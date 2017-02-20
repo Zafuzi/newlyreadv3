@@ -1,0 +1,18 @@
+span.
+    @using NewlyReadv3.Tools;
+h2 Featured Articles
+p @ViewBag.Message
+span.articles.
+    @foreach(var source in ViewBag.Articles){
+        <a href="~/Home/ViewArticle?url=@source.url&title=@source.title" class="article">
+            <paper-card image="@source.urlToImage">
+                <div class="card-content">
+                    <h4>@source.title</h4>
+                    <p class="light">@source.author</p>
+                    <small>@source.publishedAt</small>
+                    <p>@StringTools.Concat("" + source.description, 100)...</p>
+                    <p>@StringTools.GetDomainName("" + source.url)</p>
+                </div>
+            </paper-card>
+        </a>
+    }

@@ -1,0 +1,51 @@
+doctype html
+html(lang="en")
+    head
+        title @ViewBag.Title | NewlyRead
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="author" content="Zafuzi Industries")
+        meta(name="web_author" content="Zachary Foutz")
+        meta(name="robots" content="index, follow")
+        meta(name="copyright" content="Copyright 2017 Zafuzi Industries, All Rights Reserved")
+        meta(name="description" content="NewlyRead is a simple news site that provides you with the news as quickly as possible.")
+        link(rel="stylesheet" href="~/components/normalize-css/normalize.css")
+        link(rel="stylesheet" href="~/css/styles.css")
+        link(rel="import" href="~/components/polymer/polymer.html")
+        include _LayoutComponents.pug
+
+    body
+        app-drawer-layout(width="256px" force-narrow)
+            app-drawer#drawer(swipe-open)
+                ul
+                    li Home
+                    li About
+                    li
+                        a(href="~/Home/Category?category=business") Business
+                    li
+                        a(href="~/Home/Category?category=entertainment") Entertainment
+                    li
+                        a(href="~/Home/Category?category=gaming") Gaming
+                    li
+                        a(href="~/Home/Category?category=general") General
+                    li
+                        a(href="~/Home/Category?category=music") Music
+                    li
+                        a(href="~/Home/Category?category=science-and-nature") Science &amp; Nature
+                    li
+                        a(href="~/Home/Category?category=sport") Sports
+                    li
+                        a(href="~/Home/Category?category=technology") Technology
+
+            app-header(fixed shadow)#header
+                app-toolbar
+                    paper-icon-button(icon="menu" drawer-toggle)
+                    div(main-title)
+                        p NewlyRead
+            span#content @RenderBody()
+
+        script(type="text/javascript" src="~/components/jquery/dist/jquery.min.js")
+        script(type="text/javascript" src="~/components/webcomponentsjs/webcomponents.min.js")
+        script(type="text/javascript" src="~/components/fetch/fetch.js")
+        script(type="text/javascript" src="~/components/jquery-unveil/jquery.unveil.js")
+        script(type="text/javascript" src="~/scripts/seed.js")
+        block scripts

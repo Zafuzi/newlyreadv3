@@ -1,0 +1,103 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-family: 'Roboto',arial,sans-serif;
+    line-height: 2;
+    width: 100vw;
+    overflow-x: hidden;
+    background: #f5f5f5;
+    color: #555;
+}
+h2{
+    width: 100%;
+    text-align: center;
+}
+
+// Navigation
+#header{
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    background: #fff;
+}
+#drawer{
+    z-index: 100;
+}
+
+// Banner
+#banner{
+    width: 100%;
+    background: url("https://unsplash.it/1920/1080") no-repeat center center;
+    background-size: cover;
+    height: 300px;
+}
+#banner_msg{
+    background: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+    color: white;
+}
+#content{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.article{
+    width: calc(50% - 20em);
+    margin: .5em;
+}
+.article img{
+    width: 100%;
+    display: flex;
+    object-fit: cover;
+    max-height: 25%;
+}
+.featured{
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+// Media Queries
+@media(max-width: 768px){
+    .article{
+        width: calc(50% - 10em);
+    }
+}
+@media(max-width: 468px){
+    .article{
+        width: calc(100% - 2em);
+    }
+}
+
+.articles{
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.reader{    
+    max-width: 768px;
+    width: calc(100% - 10em);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    text-align: left;
+    padding: 1em;
+    margin-top: 100px;
+    word-wrap: normal;
+}
+.reader img{
+    width: 100%;
+    object-fit: cover;
+}

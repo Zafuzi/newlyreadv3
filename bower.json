@@ -1,0 +1,28 @@
+{
+  "name": "newlyreadv3",
+  "description": "NewlyRead.com 3rd version",
+  "main": "index.js",
+  "authors": [
+    "zafuzi"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "modernizr": "^3.3.1",
+    "jquery": "^3.1.1",
+    "normalize-css": "normalize.css#^5.0.0",
+    "polymer": "^1.8.0",
+    "paper-elements": "polymerelements/paper-elements#^1.0.7",
+    "app-layout": "PolymerElements/app-layout#^0.10.7",
+    "iron-elements": "polymerelements/iron-elements#^1.0.10",
+    "fetch": "^2.0.2"
+  }
+}
