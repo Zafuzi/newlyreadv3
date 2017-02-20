@@ -10,6 +10,8 @@ using RestSharp;
 using ServiceStack.Redis;
 using Newtonsoft.Json;
 using ServiceStack.Redis.Generic;
+using System.Threading;
+using NewlyReadv3.Tools;
 
 namespace NewlyReadv3
 {
@@ -29,12 +31,22 @@ namespace NewlyReadv3
                         db.Set("sources", response.Content);
                     });
                 }
-                var sourcesTimer = new System.Threading.Timer((e) =>
-                {
-                    Console.WriteLine("\n Updating Articles \n");
-                    updateArticles();
-                }, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
             }
+            var sourcesTimer = new System.Threading.Timer((e) =>
+            {
+                using (var db = new RedisClient())
+                {
+                    if (!db.ContainsKey("sources"))
+                    {
+                        return;
+                    }
+                    var rclient = new RestClient("http://newsapi.org/v1/");
+                    var request = new RestRequest();
+                    dynamic sources = JsonConvert.DeserializeObject(db.Get<dynamic>("sources"));
+                    updateArticles(db, sources, rclient, request);
+                }
+                
+             }, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
             var config = new ConfigurationBuilder()
                 .AddCommandLine(args)
                 .AddEnvironmentVariables(prefix: "ASPNETCORE_")
@@ -51,28 +63,21 @@ namespace NewlyReadv3
             host.Run();
         }
 
-        private static void updateArticles()
+        private static void updateArticles(RedisClient db, dynamic sources, RestClient rclient, RestRequest request)
         {
-            using (var db = new RedisClient())
+            foreach (dynamic source in sources.sources)
             {
-                if(!db.ContainsKey("sources")){
-                    return;
-                }
-                var rclient = new RestClient("http://newsapi.org/v1/");
-                var request = new RestRequest();
-                dynamic sources = JsonConvert.DeserializeObject(db.Get<dynamic>("sources"));
-                foreach (dynamic source in sources.sources)
+                var sw = new Stopwatch();
+                request = new RestRequest("articles?apiKey=ccfdc66609fc4b7b87258020b85d4380&source=" + source.id);
+                rclient.ExecuteAsync(request, response =>
                 {
-                    request = new RestRequest("articles?apiKey=ccfdc66609fc4b7b87258020b85d4380&source=" + source.id);
-                    rclient.ExecuteAsync(request, response =>
-                    {
-                        var sourceKey = string.Format("articles:{0}:{1}", source.category, source.id);
-                        var article = response.Content;
-                        db.SetValue(sourceKey, article);
-                    });
-                }
-
+                    var sourceKey = string.Format("articles:{0}:{1}", source.category, source.id);
+                    var article = response.Content;
+                    db.SetValue(sourceKey, article);
+                    Console.WriteLine("finished getting source: {0}", StringTools.Concat(response.Content, 100));
+                });
             }
+            Console.WriteLine("Getting sources");
         }
     }
 }

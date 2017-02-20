@@ -1,2 +1,4 @@
-<div class="reader"><h4>@ViewBag.Article.title</h4>
+<span>@using NewlyReadv3.Tools;</span><div class="reader"><h4>@ViewBag.Article.title</h4>
+<small>@StringTools.GetDomainName(@ViewBag.Original)</small>
+<a href="@ViewBag.Original">Original Article</a>
 @Html.Raw(ViewBag.Article.content)</div>

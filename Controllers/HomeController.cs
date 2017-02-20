@@ -37,10 +37,18 @@ namespace NewlyReadv3.Controllers
                 List<dynamic> articles = new List<dynamic>();
                 foreach (dynamic source in articlesFromSources)
                 {
-                    dynamic data = JsonConvert.DeserializeObject(redisClient.GetValue(source));
-                    foreach (dynamic item in data.articles)
-                    {
-                        articles.Add(item);
+                    if(source != null && source.Length > 0){
+                        try{
+                            dynamic data = JsonConvert.DeserializeObject(redisClient.GetValue(source));
+                            if(data != null){
+                                foreach (dynamic item in data.articles)
+                                {
+                                    articles.Add(item);
+                                }
+                            }
+                        }catch(Exception e){
+                            Console.WriteLine("\n Error reading articles from DB: {0} \n {1}", source, e);
+                        }
                     }
                 }
                 articles = articles.OrderBy(item => item.title).ToList();
@@ -84,6 +92,7 @@ namespace NewlyReadv3.Controllers
                         Wait.WaitOne();
                     }
                 }
+                ViewBag.Original = url;
             return View();
         }
     }
