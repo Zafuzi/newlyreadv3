@@ -43,7 +43,18 @@ namespace NewlyReadv3
                     var rclient = new RestClient("http://newsapi.org/v1/");
                     var request = new RestRequest();
                     dynamic sources = JsonConvert.DeserializeObject(db.Get<dynamic>("sources"));
-                    updateArticles(db, sources, rclient, request);
+                    var response = new RestResponse();
+                    foreach(dynamic source in sources.sources){
+                        try{
+                            request = new RestRequest("articles?apiKey=ccfdc66609fc4b7b87258020b85d4380&source=" + source.id);
+                            Task.Run(async () =>
+                            {
+                                response = await GetResponseContentAsync(db, source, rclient, request) as RestResponse;
+                            }).Wait();
+                        }catch(Exception b){
+                            Console.WriteLine("\n Error converting the source: {0} \n", b);
+                        }
+                    }
                 }
                 
              }, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
@@ -63,21 +74,19 @@ namespace NewlyReadv3
             host.Run();
         }
 
-        private static void updateArticles(RedisClient db, dynamic sources, RestClient rclient, RestRequest request)
+        public static Task<IRestResponse> GetResponseContentAsync(RedisClient db, dynamic source, RestClient rclient, RestRequest request)
         {
-            foreach (dynamic source in sources.sources)
+            var tcs = new TaskCompletionSource<IRestResponse>();
+            var sw = new Stopwatch();
+            var t = rclient.ExecuteAsync(request, response =>
             {
-                var sw = new Stopwatch();
-                request = new RestRequest("articles?apiKey=ccfdc66609fc4b7b87258020b85d4380&source=" + source.id);
-                rclient.ExecuteAsync(request, response =>
-                {
-                    var sourceKey = string.Format("articles:{0}:{1}", source.category, source.id);
-                    var article = response.Content;
-                    db.SetValue(sourceKey, article);
-                    Console.WriteLine("finished getting source: {0}", StringTools.Concat(response.Content, 100));
-                });
-            }
-            Console.WriteLine("Getting sources");
+                var sourceKey = string.Format("articles:{0}:{1}", source.category, source.id);
+                var article = response.Content;
+                db.SetValue(sourceKey, article);
+                Console.WriteLine("finished getting source: {0}", StringTools.Concat(response.Content, 100));
+                tcs.SetResult(response);
+            });
+            return tcs.Task;
         }
     }
 }

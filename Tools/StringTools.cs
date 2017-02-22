@@ -15,15 +15,21 @@ namespace NewlyReadv3.Tools{
         }
         public static string GetDomainName(string url)
         {
-            string domain = new Uri(url).DnsSafeHost.ToLower();
-            var tokens = domain.Split('.');
-            if (tokens.Length > 2)
-            {
-                //Add only second level exceptions to the < 3 rule here
-                string[] exceptions = { "info", "firm", "name", "com", "biz", "gen", "ltd", "web", "net", "pro", "org" }; 
-                var validTokens = 2 + ((tokens[tokens.Length - 2].Length < 3 || exceptions.Contains(tokens[tokens.Length - 2])) ? 1 : 0);
-                domain = string.Join(".", tokens, tokens.Length - validTokens, validTokens);
+            string domain = url;
+            try{
+                domain = new Uri(url).DnsSafeHost.ToLower();
+                var tokens = domain.Split('.');
+                if (tokens.Length > 2)
+                {
+                    //Add only second level exceptions to the < 3 rule here
+                    string[] exceptions = { "info", "firm", "name", "com", "biz", "gen", "ltd", "web", "net", "pro", "org" }; 
+                    var validTokens = 2 + ((tokens[tokens.Length - 2].Length < 3 || exceptions.Contains(tokens[tokens.Length - 2])) ? 1 : 0);
+                    domain = string.Join(".", tokens, tokens.Length - validTokens, validTokens);
+                }
+            }catch(Exception e){
+                Console.WriteLine("\n\n Error Parsing URI: {1} \n\n {0} \n\n", e, url);
             }
+            
             return domain;
         }
     }

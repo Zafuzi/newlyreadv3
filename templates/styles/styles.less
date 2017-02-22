@@ -7,7 +7,7 @@ html {
     line-height: 2;
     width: 100vw;
     overflow-x: hidden;
-    background: #f5f5f5;
+    background: #FAFAFA;
     color: #555;
 }
 h2{
@@ -25,11 +25,34 @@ h2{
 #drawer{
     z-index: 100;
 }
+#drawer ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#drawer ul li{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+#drawer li:hover, #drawer li:focus{
+    background: rgba(100,100,100, .2);
+}
+#drawer a{
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1em 0;
+    height: 100%;
+    color: #555;
+    text-decoration: none;
+}
 
 // Banner
 #banner{
     width: 100%;
-    background: url("https://unsplash.it/1920/1080") no-repeat center center;
+    //background: url("https://unsplash.it/1920/1080") no-repeat center center;
+    background: #555;
     background-size: cover;
     height: 300px;
 }
@@ -45,18 +68,36 @@ h2{
 }
 #content{
     display: flex;
-    flex-flow: row wrap;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: stretch;
+    align-content: center;
 }
 .article{
     width: calc(50% - 20em);
-    margin: .5em;
+    display: flex; 
+    padding: 0.5em;
+    text-decoration: none;
+    color: #555;
+    align-items: stretch;
+    align-content: center;
 }
-.article img{
+.article .paper-card-0{
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+}
+.article .card-content{
+    align-items: center;
+}
+.article .card-image{
     width: 100%;
+}
+.article .card-image img{
+    width: inherit;
     display: flex;
     object-fit: cover;
-    max-height: 25%;
+    height: 200px;
 }
 .featured{
     max-width: 1000px;
@@ -84,6 +125,7 @@ h2{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    align-items: stretch;
 }
 
 .reader{    

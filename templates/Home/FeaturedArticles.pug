@@ -1,13 +1,22 @@
-
-h2 Featured Articles
 span.
+    @using NewlyReadv3.Tools;
+h2 Featured Articles
+span.articles.
     @foreach(var source in ViewBag.Articles){
-        <p>@source</p>
+        <a href="~/Home/ViewArticle?url=@source.original_url&title=@source.title" class="article">
+            <paper-card>
+                <div class="card-image">
+                    @if(source.images.Count > 0){
+                        <img class="lazyload" src="~/images/news.png" data-src="@source.images[0].url" alt="Missing Article Image">
+                    }else{
+                        <img class="lazyload" src="~/images/news.png" alt="Missing Article Image">
+                    }
+                </div>
+                <div class="card-content">
+                    <h4>@source.title</h4>
+                    <p>@StringTools.Concat("" + source.description, 100)...</p>
+                    <p>@StringTools.GetDomainName("" + source.provider_url)</p>
+                </div>
+            </paper-card>
+        </a>
     }
-//- div.featured
-//-     each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 17, 19, 20, 21]
-//-         div.article
-//-             div.card-content
-//-                 img(src="https://unsplash.it/800/600")
-//-                 h4 Samsung is making extra-sure the galaxy s8's battery won't explode
-//-                 p Samsung’s next big thing is just around the corner. Unlike in previous years, the brand new Galaxy flagship’s job won’t solely be to fight off …

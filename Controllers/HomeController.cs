@@ -1,14 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RestSharp;
 using ServiceStack.Redis;
-using ServiceStack.Redis.Generic;
 
 namespace NewlyReadv3.Controllers
 {
@@ -20,41 +15,13 @@ namespace NewlyReadv3.Controllers
         [Route("Home/Index")]
         public IActionResult Index()
         {
-            using (var redisClient = new RedisClient())
-            {
-                var articlesFromSources = redisClient.ScanAllKeys("articles:*").ToList();
-                ViewBag.Articles = redisClient.GetValues<dynamic>(articlesFromSources);
-            }
+            ViewBag.Articles = NewlyReadv3.Controllers.v1.getExtracted();
             return View();
         }
 
         public IActionResult Category(string category)
         {
-            using (var redisClient = new RedisClient())
-            {
-                var keysToScan = string.Format("articles:{0}:*", category);
-                var articlesFromSources = redisClient.ScanAllKeys(keysToScan);
-                List<dynamic> articles = new List<dynamic>();
-                foreach (dynamic source in articlesFromSources)
-                {
-                    if(source != null && source.Length > 0){
-                        try{
-                            dynamic data = JsonConvert.DeserializeObject(redisClient.GetValue(source));
-                            if(data != null){
-                                foreach (dynamic item in data.articles)
-                                {
-                                    articles.Add(item);
-                                }
-                            }
-                        }catch(Exception e){
-                            Console.WriteLine("\n Error reading articles from DB: {0} \n {1}", source, e);
-                        }
-                    }
-                }
-                articles = articles.OrderBy(item => item.title).ToList();
-                ViewBag.Articles = articles;
-                Console.WriteLine(articlesFromSources);
-            }
+            ViewBag.Articles = NewlyReadv3.Controllers.v1.getArticles(category);
             return View();
         }
 
@@ -84,8 +51,7 @@ namespace NewlyReadv3.Controllers
                                 var sourceKey = string.Format("html:{0}", title);
                                 var article = response.Content;
                                 redisClient.SetValue(sourceKey, article);
-
-                                ViewBag.Article = JsonConvert.DeserializeObject(content);
+                                ViewBag.Article = extract;
                                 Wait.Set();
                             }
                         });

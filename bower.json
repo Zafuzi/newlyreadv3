@@ -23,6 +23,7 @@
     "paper-elements": "polymerelements/paper-elements#^1.0.7",
     "app-layout": "PolymerElements/app-layout#^0.10.7",
     "iron-elements": "polymerelements/iron-elements#^1.0.10",
-    "fetch": "^2.0.2"
+    "fetch": "^2.0.2",
+    "lazysizes": "^2.0.7"
   }
 }

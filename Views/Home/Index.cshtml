@@ -1,3 +1,18 @@
-<Index class="pug">(HomePage)</Index><div id="banner"><div id="banner_msg"><h1>NewlyRead</h1><p>Stupid Simple News</p></div></div><h2>Featured Articles</h2><span>@foreach(var source in ViewBag.Articles){
-    <p>@source</p>
+<Index class="pug">(HomePage)</Index><div id="banner"><div id="banner_msg"><h1>NewlyRead</h1><p>Stupid Simple News</p></div></div><span>@using NewlyReadv3.Tools;</span><h2>Featured Articles</h2><span class="articles">@foreach(var source in ViewBag.Articles){
+    <a href="~/Home/ViewArticle?url=@source.original_url&title=@source.title" class="article">
+        <paper-card>
+            <div class="card-image">
+                @if(source.images.Count > 0){
+                    <img class="lazyload" src="~/images/news.png" data-src="@source.images[0].url" alt="Missing Article Image">
+                }else{
+                    <img class="lazyload" src="~/images/news.png" alt="Missing Article Image">
+                }
+            </div>
+            <div class="card-content">
+                <h4>@source.title</h4>
+                <p>@StringTools.Concat("" + source.description, 100)...</p>
+                <p>@StringTools.GetDomainName("" + source.provider_url)</p>
+            </div>
+        </paper-card>
+    </a>
 }</span>
