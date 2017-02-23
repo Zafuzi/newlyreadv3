@@ -47,8 +47,9 @@ namespace NewlyReadv3.Controllers
                             {
                                 string content = response.Content;
                                 dynamic extract = JsonConvert.DeserializeObject(content);
-                                if(title == null) title="unknown";
-                                var sourceKey = string.Format("html:{0}", title);
+                                var pdisplay = extract.provider_display;
+                                if(pdisplay == null) pdisplay="GENERAL";
+                                var sourceKey = string.Format("html:{0}:{1}", pdisplay, title);
                                 var article = response.Content;
                                 redisClient.SetValue(sourceKey, article);
                                 ViewBag.Article = extract;

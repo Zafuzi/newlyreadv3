@@ -46,7 +46,8 @@
             "type": "build"
         },
         "RestSharp.NetCore": "105.2.3",
-        "ServiceStack.Redis.Core": "1.0.3"
+        "ServiceStack.Redis.Core": "1.0.3",
+        "StackExchange.Redis": "1.1.604-alpha"
     },
 
     "tools": {

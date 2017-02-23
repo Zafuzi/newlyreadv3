@@ -151,6 +151,7 @@
 --reference:/Users/zafuzi/.nuget/packages/ServiceStack.Interfaces.Core/1.0.3/lib/netstandard1.1/ServiceStack.Interfaces.dll
 --reference:/Users/zafuzi/.nuget/packages/ServiceStack.Redis.Core/1.0.3/lib/netstandard1.3/ServiceStack.Redis.dll
 --reference:/Users/zafuzi/.nuget/packages/ServiceStack.Text.Core/1.0.3/lib/netstandard1.1/ServiceStack.Text.dll
+--reference:/Users/zafuzi/.nuget/packages/StackExchange.Redis/1.1.604-alpha/lib/netstandard1.5/StackExchange.Redis.dll
 --reference:/Users/zafuzi/.nuget/packages/System.AppContext/4.3.0/ref/netstandard1.6/System.AppContext.dll
 --reference:/Users/zafuzi/.nuget/packages/System.Buffers/4.3.0/lib/netstandard1.1/System.Buffers.dll
 --reference:/Users/zafuzi/.nuget/packages/System.Collections/4.3.0/ref/netstandard1.3/System.Collections.dll

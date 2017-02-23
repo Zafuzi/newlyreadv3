@@ -85,13 +85,13 @@ namespace NewlyReadv3.Controllers{
                 {
                     if(source != null && source.Length > 0){
                         try{
-                            articles.Add(JsonConvert.DeserializeObject(redisClient.GetValue(source)));
+                            dynamic article = JsonConvert.DeserializeObject(redisClient.GetValue(source));
+                            articles.Add(article);
                         }catch(Exception e){
-                            Console.WriteLine("\n Error reading articles from DB: {0} \n {1}", source, e);
+                            Console.WriteLine("\n Error reading articles from DB: {0} \n {1} \n", source, e);
                         }
                     }
                 }
-                articles.Reverse();
                 data = articles;
             }
             return data;

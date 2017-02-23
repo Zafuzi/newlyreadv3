@@ -2058,9 +2058,6 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
-      "Nhiredis/0.9.2": {
-        "type": "package"
-      },
       "NuGet.Common/3.5.0-beta2-1484": {
         "type": "package",
         "dependencies": {
@@ -2653,6 +2650,31 @@
             "assetType": "native",
             "rid": "win7-x86"
           }
+        }
+      },
+      "StackExchange.Redis/1.1.604-alpha": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.5.0-rc2-24027",
+          "System.Collections.NonGeneric": "4.0.1-rc2-24027",
+          "System.IO.FileSystem": "4.0.1-rc2-24027",
+          "System.Net.NameResolution": "4.0.0-rc2-24027",
+          "System.Net.Security": "4.0.0-rc2-24027",
+          "System.Net.Sockets": "4.1.0-rc2-24027",
+          "System.Reflection.Emit": "4.0.1-rc2-24027",
+          "System.Reflection.Emit.Lightweight": "4.0.1-rc2-24027",
+          "System.Reflection.TypeExtensions": "4.1.0-rc2-24027",
+          "System.Security.Cryptography.Algorithms": "4.1.0-rc2-24027",
+          "System.Security.Cryptography.X509Certificates": "4.1.0-rc2-24027",
+          "System.Threading.Thread": "4.0.0-rc2-24027",
+          "System.Threading.ThreadPool": "4.0.10-rc2-24027",
+          "System.Threading.Timer": "4.0.1-rc2-24027"
+        },
+        "compile": {
+          "lib/netstandard1.5/StackExchange.Redis.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/StackExchange.Redis.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -6754,21 +6776,6 @@
         "tools/install.ps1"
       ]
     },
-    "Nhiredis/0.9.2": {
-      "sha512": "6+6WjnkgyG7QBb3VQHEXc6g7tYtyewLG/vTmek9IFhC1wAJphUBrW5ef7voIX2io4b5DGipdDECb5IfTbarurA==",
-      "type": "package",
-      "path": "Nhiredis/0.9.2",
-      "files": [
-        "Nhiredis.0.9.2.nupkg.sha512",
-        "Nhiredis.nuspec",
-        "content/net40/x64/hiredisx.dll",
-        "content/net40/x64/libhiredisx.so",
-        "content/net40/x86/hiredisx.dll",
-        "content/net40/x86/libhiredisx.so",
-        "lib/net40/Nhiredis.dll",
-        "tools/net40/install.ps1"
-      ]
-    },
     "NuGet.Common/3.5.0-beta2-1484": {
       "sha512": "rLBmcZOPVF7Mne/LumDNACZZyI5B67hjylt+Z/WSEUQ/IXE9nLv8IVL0+T9xljIaSSQCjO8cOtmJ6ztqrsQKcQ==",
       "type": "package",
@@ -7286,6 +7293,23 @@
         "runtimes/win7-x64/native/sqlite3.dll",
         "runtimes/win7-x86/native/sqlite3.dll",
         "sqlite-version.txt"
+      ]
+    },
+    "StackExchange.Redis/1.1.604-alpha": {
+      "sha512": "urjRtG87pK9fQ6bGY1/KkSa/BQ0n54glPs/iHKwYyj8HFb2k+DhoDMS4O+GZJeXOm4+ci22BIN35UDkQnI5FBw==",
+      "type": "package",
+      "path": "StackExchange.Redis/1.1.604-alpha",
+      "files": [
+        "StackExchange.Redis.1.1.604-alpha.nupkg.sha512",
+        "StackExchange.Redis.nuspec",
+        "lib/net40/StackExchange.Redis.dll",
+        "lib/net40/StackExchange.Redis.xml",
+        "lib/net45/StackExchange.Redis.dll",
+        "lib/net45/StackExchange.Redis.xml",
+        "lib/net46/StackExchange.Redis.dll",
+        "lib/net46/StackExchange.Redis.xml",
+        "lib/netstandard1.5/StackExchange.Redis.dll",
+        "lib/netstandard1.5/StackExchange.Redis.xml"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -12480,9 +12504,9 @@
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Tools >= 1.1.0-preview4-final",
       "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 1.1.0-preview4-final",
-      "Nhiredis >= 0.9.2",
       "RestSharp.NetCore >= 105.2.3",
-      "ServiceStack.Redis.Core >= 1.0.3"
+      "ServiceStack.Redis.Core >= 1.0.3",
+      "StackExchange.Redis >= 1.1.604-alpha"
     ],
     ".NETCoreApp,Version=v1.0": []
   },
