@@ -81,14 +81,16 @@ namespace NewlyReadv3.Controllers{
                 var keysToScan = string.Format("html:*");
                 var articlesFromSources = redisClient.ScanAllKeys(keysToScan);
                 List<dynamic> articles = new List<dynamic>();
-                foreach (dynamic source in articlesFromSources)
-                {
-                    if(source != null && source.Length > 0){
-                        try{
-                            dynamic article = JsonConvert.DeserializeObject(redisClient.GetValue(source));
-                            articles.Add(article);
-                        }catch(Exception e){
-                            Console.WriteLine("\n Error reading articles from DB: {0} \n {1} \n", source, e);
+                if(articlesFromSources != null && articlesFromSources.Count() > 0){
+                    foreach (dynamic source in articlesFromSources)
+                    {
+                        if(source != null && source.Length > 0){
+                            try{
+                                dynamic article = JsonConvert.DeserializeObject(redisClient.GetValue(source));
+                                articles.Add(article);
+                            }catch(Exception e){
+                                Console.WriteLine("\n Error reading articles from DB: {0} \n {1} \n", source, e);
+                            }
                         }
                     }
                 }
