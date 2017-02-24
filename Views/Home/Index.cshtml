@@ -1,17 +1,19 @@
-<Index class="pug">(HomePage)</Index><div id="banner"><div id="banner_msg"><h1>NEWS.</h1></div></div><span>@using NewlyReadv3.Tools;</span><h2>Featured Articles</h2><span class="articles">@foreach(dynamic article in ViewBag.Articles){
-    <a href="~/Home/ViewArticle?url=@article.original_url&title=@article.title" class="article">
+<Index class="pug">(HomePage)</Index><div id="banner"><div id="banner_msg"><h1>NEWS.</h1></div></div><span>@using NewlyReadv3.Tools;
+@using Newtonsoft.Json;</span><h2>Featured Articles</h2><span class="articles"></span><span class="articles">@foreach(dynamic article in ViewBag.Articles){
+    var content = JsonConvert.DeserializeObject("" + article.content);
+    <a href="~/Home/ViewArticle?url=@content.original_url&title=@content.title" class="article">
         <paper-card>
             <div class="card-image">
-                @if(article.images.Count > 0){
-                    <img class="lazyload" src="~/images/news.png" data-src="@article.images[0].url" alt="Missing Article Image">
+                @if(content.images.Count > 0){
+                    <img class="lazyload" src="~/images/news.png" data-src="@content.images[0].url" alt="Missing Article Image">
                 }else{
                     <img class="lazyload" src="~/images/news.png" alt="Missing Article Image">
                 }
             </div>
             <div class="card-content">
-                <h4>@article.title</h4>
-                <p>@StringTools.Concat("" + article.description, 100)...</p>
-                <p>@StringTools.GetDomainName("" + article.provider_url)</p>
+                <h4>@content.title</h4>
+                <p>@StringTools.Concat("" + content.description, 100)...</p>
+                <p>@StringTools.GetDomainName("" + content.provider_url)</p>
             </div>
         </paper-card>
     </a>
