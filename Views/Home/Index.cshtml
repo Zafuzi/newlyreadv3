@@ -1,5 +1,11 @@
-<Index class="pug">(HomePage)</Index><div id="banner"><div id="banner_msg"><h1>NEWS.</h1></div></div><span>@using NewlyReadv3.Tools;
-@using Newtonsoft.Json;</span><h2>Featured Articles</h2><span class="articles"></span><span class="articles">@foreach(dynamic article in ViewBag.Articles){
+<div id="banner"><div id="banner_msg"><img class="lazyload" src="" data-src="images/banner_background.jpg"/><h1>Read the News</h1></div></div><span>@using NewlyReadv3.Tools;
+@using Newtonsoft.Json;</span><h2>Featured Articles</h2><span class="articles"></span><span class="articles">@{
+    int i = 0;
+}
+@foreach(dynamic article in ViewBag.Articles){
+    if(i >= 12){
+        return;
+    }
     var content = JsonConvert.DeserializeObject("" + article.content);
     <a href="~/Home/ViewArticle?url=@content.original_url&title=@content.title" class="article">
         <paper-card>
@@ -17,4 +23,5 @@
             </div>
         </paper-card>
     </a>
+    i++;
 }</span>

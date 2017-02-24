@@ -1,5 +1,11 @@
 <span>@using NewlyReadv3.Tools;
-@using Newtonsoft.Json;</span><h2>Featured Articles</h2><span class="articles"></span><span class="articles">@foreach(dynamic article in ViewBag.Articles){
+@using Newtonsoft.Json;</span><h2>Featured Articles</h2><span class="articles"></span><span class="articles">@{
+    int i = 0;
+}
+@foreach(dynamic article in ViewBag.Articles){
+    if(i >= 12){
+        return;
+    }
     var content = JsonConvert.DeserializeObject("" + article.content);
     <a href="~/Home/ViewArticle?url=@content.original_url&title=@content.title" class="article">
         <paper-card>
@@ -17,4 +23,5 @@
             </div>
         </paper-card>
     </a>
+    i++;
 }</span>

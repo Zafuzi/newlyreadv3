@@ -19,6 +19,12 @@ namespace NewlyReadv3.Controllers
             return View();
         }
 
+        [Route("About")]
+        [Route("Home/About")]
+        public IActionResult About(){
+            return View();
+        }
+
         public IActionResult Category(string category)
         {
             ViewBag.Articles = NewlyReadv3.Controllers.v1.getArticles(category);
