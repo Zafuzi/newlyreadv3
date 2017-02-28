@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RestSharp;
 using ServiceStack.Redis;
+using StackExchange.Redis;
 
 namespace NewlyReadv3.Controllers
 {
@@ -90,38 +92,39 @@ namespace NewlyReadv3.Controllers
         public static dynamic getExtracted()
         {
             dynamic data = "";
-            using (var redisClient = new RedisClient())
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("127.0.0.1");
+            var server = redis.GetServer("127.0.0.1:6379");
+            var db = redis.GetDatabase();
+
+            List<dynamic> articles = new List<dynamic>();
+            foreach (var key in server.Keys(pattern: "html:*"))
             {
-                var keysToScan = string.Format("html:*");
-                var articlesFromSources = redisClient.ScanAllKeys(keysToScan);
-                List<dynamic> articles = new List<dynamic>();
-                if (articlesFromSources != null && articlesFromSources.Count() > 0)
+                string source = db.StringGet(key);
+                if (source != null && source.Length > 0)
                 {
-                    foreach (dynamic source in articlesFromSources)
+                    try
                     {
-                        if (source != null && source.Length > 0)
-                        {
-                            try
-                            {
-                                dynamic temp = JsonConvert.DeserializeObject(redisClient.GetValue(source));
-                                articles.Add(temp);
-                            }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine("\n Error reading articles from DB: {0} \n {1} \n", source, e);
-                            }
-                        }
+                        dynamic temp = JsonConvert.DeserializeObject(source);
+                        articles.Add(temp);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("\n Error reading articles from DB: {0} \n {1} \n", source, e);
                     }
                 }
-                data = articles.OrderByDescending(item => item.date);
-                foreach(dynamic item in data){
-                    try{
-                        item.content = JsonConvert.DeserializeObject(item);
-                    }catch(Exception e){
-                        Console.WriteLine("Error converting content for article: {0} \n {1} \n", item, e);
-                    }
-                    
+            }
+            data = articles.OrderByDescending(item => item.date);
+            foreach (dynamic item in data)
+            {
+                try
+                {
+                    item.content = JsonConvert.DeserializeObject(item);
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error converting content for article: {0} \n {1} \n", item, e);
+                }
+
             }
             return data;
         }
@@ -158,7 +161,8 @@ namespace NewlyReadv3.Controllers
                             if (pdisplay == null) pdisplay = "GENERAL";
                             var sourceKey = string.Format("html:{0}:{1}", pdisplay, title);
                             var html = response.Content;
-                            var obj = new ExtractedArticle{
+                            var obj = new ExtractedArticle
+                            {
                                 date = now.ToString("u"),
                                 content = html
                             };
@@ -174,9 +178,10 @@ namespace NewlyReadv3.Controllers
             return article;
         }
 
-        class ExtractedArticle {
-            public string date {get; set;}
-            public string content {get; set;}
+        class ExtractedArticle
+        {
+            public string date { get; set; }
+            public string content { get; set; }
         }
     }
 }

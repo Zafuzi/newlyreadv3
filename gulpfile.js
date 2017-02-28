@@ -5,8 +5,6 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     rename = require('gulp-rename');
 
-
-
 gulp.task('shared_html', function() {
     return watch('./templates/Shared/*.pug', function() {
         gulp.src('./templates/Shared/*.pug')
