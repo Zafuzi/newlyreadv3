@@ -137,7 +137,6 @@ namespace NewlyReadv3.Controllers
             using (var redisClient = new RedisClient())
             {
                 string x = string.Format("html:{0}", title);
-                Console.WriteLine(x);
                 if (redisClient.ContainsKey(x))
                 {
                     article = JsonConvert.DeserializeObject(redisClient.GetValue(x));
