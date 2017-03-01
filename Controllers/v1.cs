@@ -92,40 +92,44 @@ namespace NewlyReadv3.Controllers
         public static dynamic getExtracted()
         {
             dynamic data = "";
-            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("127.0.0.1");
-            var server = redis.GetServer("127.0.0.1:6379");
-            var db = redis.GetDatabase();
 
-            List<dynamic> articles = new List<dynamic>();
-            foreach (var key in server.Keys(pattern: "html:*"))
+            var redisManager = new RedisManagerPool("redis://localhost:6379?ConnectTimeout=5000&IdleTimeOutSecs=180&abortConnect=false");
+
+            using (var client = redisManager.GetClient())
             {
-                string source = db.StringGet(key);
-                if (source != null && source.Length > 0)
+                List<dynamic> articles = new List<dynamic>();
+                foreach (var key in client.GetKeysByPattern(pattern: "html:*"))
+                {
+                    string source = client.GetValue(key);
+                    if (source != null && source.Length > 0)
+                    {
+                        try
+                        {
+                            dynamic temp = JsonConvert.DeserializeObject(source);
+                            articles.Add(temp);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("\n Error reading articles from DB: {0} \n {1} \n", source, e);
+                        }
+                    }
+                }
+                data = articles.OrderByDescending(item => item.date);
+                foreach (dynamic item in data)
                 {
                     try
                     {
-                        dynamic temp = JsonConvert.DeserializeObject(source);
-                        articles.Add(temp);
+                        item.content = JsonConvert.DeserializeObject(item);
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("\n Error reading articles from DB: {0} \n {1} \n", source, e);
+                        Console.WriteLine("Error converting content for article: {0} \n {1} \n", item, e);
                     }
-                }
-            }
-            data = articles.OrderByDescending(item => item.date);
-            foreach (dynamic item in data)
-            {
-                try
-                {
-                    item.content = JsonConvert.DeserializeObject(item);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Error converting content for article: {0} \n {1} \n", item, e);
+
                 }
 
             }
+
             return data;
         }
         [HttpGet("extract/{url}")]
