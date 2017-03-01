@@ -80,7 +80,7 @@ namespace NewlyReadv3.Controllers
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("\n Error reading articles from DB: {0} \n {1}", source, e);
+                            //Console.WriteLine("\n Error reading articles from DB: {0} \n {1}", source, e);
                         }
                     }
                 }
@@ -110,7 +110,7 @@ namespace NewlyReadv3.Controllers
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("\n Error reading articles from DB: {0} \n {1} \n", source, e);
+                            //Console.WriteLine("\n Error reading articles from DB: {0} \n {1} \n", source, e);
                         }
                     }
                 }
@@ -123,7 +123,7 @@ namespace NewlyReadv3.Controllers
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Error converting content for article: {0} \n {1} \n", item, e);
+                        //Console.WriteLine("Error converting content for article: {0} \n {1} \n", item, e);
                     }
 
                 }
