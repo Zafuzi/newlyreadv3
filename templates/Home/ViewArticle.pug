@@ -3,5 +3,5 @@ span.
 div.reader.
     <h4>@ViewBag.Article.title</h4>
     <small>@StringTools.GetDomainName(@ViewBag.Original)</small>
-    <a href="@ViewBag.Original">Original Article</a>
+    <a href="@ViewBag.Original" target="_blank">Original Article</a>
     @Html.Raw(ViewBag.Article.content)
