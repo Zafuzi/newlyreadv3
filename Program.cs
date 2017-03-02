@@ -57,7 +57,7 @@ namespace NewlyReadv3
                     }
                 }
                 
-             }, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
+             }, null, TimeSpan.Zero, TimeSpan.FromMinutes(20));
             var config = new ConfigurationBuilder()
                 .AddCommandLine(args)
                 .AddEnvironmentVariables(prefix: "ASPNETCORE_")
