@@ -1,27 +1,2 @@
 <div id="banner"><div id="banner_msg"><img class="lazyload" src="" data-src="images/banner_background.jpg"/><h1>Read the News</h1></div></div><span>@using NewlyReadv3.Tools;
-@using Newtonsoft.Json;</span><h2>Featured Articles</h2><span class="articles"></span><span class="articles">@{
-    int i = 0;
-}
-@foreach(dynamic article in ViewBag.Articles){
-    if(i >= 12){
-        return;
-    }
-    var content = JsonConvert.DeserializeObject("" + article.content);
-    <a href="~/Home/ViewArticle?url=@content.original_url&title=@content.title" class="article">
-        <paper-card>
-            <div class="card-image">
-                @if(content.images.Count > 0){
-                    <img class="lazyload" src="~/images/news.png" data-src="@content.images[0].url" alt="Missing Article Image">
-                }else{
-                    <img class="lazyload" src="~/images/news.png" alt="Missing Article Image">
-                }
-            </div>
-            <div class="card-content">
-                <h4>@content.title</h4>
-                <p>@StringTools.Concat("" + content.description, 100)...</p>
-                <p>@StringTools.GetDomainName("" + content.provider_url)</p>
-            </div>
-        </paper-card>
-    </a>
-    i++;
-}</span>
+@using Newtonsoft.Json;</span><h2>Click on one of the categories in the menu to the left to get started.</h2>
