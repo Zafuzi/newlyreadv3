@@ -10,11 +10,11 @@ span.articles.
                     <img class="lazyload" src="~/images/news.png" data-src="@source.urlToImage" alt="Missing Article Image">
                 </div>
                 <div class="card-content">
+                    <div class="foot">
+                        <small class="light">@StringTools.GetDomainName("" + source.url) | @source.author</small>
+                        <small class="light">@source.publishedAt</small>
+                    </div>
                     <h4>@source.title</h4>
-                    <p class="light">@source.author</p>
-                    <small>@source.publishedAt</small>
-                    <p>@StringTools.Concat("" + source.description, 100)...</p>
-                    <p>@StringTools.GetDomainName("" + source.url)</p>
                 </div>
             </paper-card>
         </a>
