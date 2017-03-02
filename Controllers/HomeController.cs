@@ -32,7 +32,6 @@ namespace NewlyReadv3.Controllers
 
         public IActionResult ViewArticle(string url, string title){
             ViewBag.Article = NewlyReadv3.Controllers.v1.Extract(url, title);
-            ViewBag.Article = "";
             ViewBag.Original = url;
             return View();
         }
