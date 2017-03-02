@@ -15,7 +15,6 @@ namespace NewlyReadv3.Controllers
         [Route("Home/Index")]
         public IActionResult Index()
         {
-            ViewBag.Articles = NewlyReadv3.Controllers.v1.getExtracted();
             return View();
         }
 
@@ -32,7 +31,7 @@ namespace NewlyReadv3.Controllers
         }
 
         public IActionResult ViewArticle(string url, string title){
-            //ViewBag.Article = NewlyReadv3.Controllers.v1.Extract(url, title);
+            ViewBag.Article = NewlyReadv3.Controllers.v1.Extract(url, title);
             ViewBag.Article = "";
             ViewBag.Original = url;
             return View();
