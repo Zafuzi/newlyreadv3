@@ -1,0 +1,9 @@
+/Users/zacharyfoutz/git/newlyreadv3/bin/Debug/netcoreapp1.1/newlyreadv3.deps.json
+/Users/zacharyfoutz/git/newlyreadv3/bin/Debug/netcoreapp1.1/newlyreadv3.runtimeconfig.json
+/Users/zacharyfoutz/git/newlyreadv3/bin/Debug/netcoreapp1.1/newlyreadv3.runtimeconfig.dev.json
+/Users/zacharyfoutz/git/newlyreadv3/bin/Debug/netcoreapp1.1/newlyreadv3.dll
+/Users/zacharyfoutz/git/newlyreadv3/bin/Debug/netcoreapp1.1/newlyreadv3.pdb
+/Users/zacharyfoutz/git/newlyreadv3/obj/Debug/netcoreapp1.1/UserSecretsAssemblyInfo.cs
+/Users/zacharyfoutz/git/newlyreadv3/obj/Debug/netcoreapp1.1/newlyreadv3.AssemblyInfo.cs
+/Users/zacharyfoutz/git/newlyreadv3/obj/Debug/netcoreapp1.1/newlyreadv3.dll
+/Users/zacharyfoutz/git/newlyreadv3/obj/Debug/netcoreapp1.1/newlyreadv3.pdb

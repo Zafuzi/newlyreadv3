@@ -149,32 +149,43 @@ namespace NewlyReadv3.Controllers
                 else
                 {
                     Console.WriteLine("\n\n NOT IN DB \n\n");
-                    var client = new RestClient("https://api.embed.ly/1/extract");
+                    // Contact
+
+                    var client = new RestClient("http://webhose.io/search?token=ac283902-3c83-4eb5-baf3-8108376e137e&format=json&q=");
                     var request = new RestRequest(Method.GET);
-                    request.AddParameter("key", "08ad220089e14298a88f0810a73ce70a");
-                    request.AddParameter("url", url);
-                    EventWaitHandle Wait = new AutoResetEvent(false);
-                    var asyncHandle = client.ExecuteAsync(request, response =>
-                    {
-                        if (response.ResponseStatus == ResponseStatus.Completed)
-                        {
-                            string content = response.Content;
-                            dynamic extract = JsonConvert.DeserializeObject(content);
-                            var pdisplay = extract.provider_display;
-                            if (pdisplay == null) pdisplay = "GENERAL";
-                            var sourceKey = string.Format("html:{0}:{1}", pdisplay, title);
-                            var html = response.Content;
-                            var obj = new ExtractedArticle
-                            {
-                                date = now.ToString("u"),
-                                content = html
-                            };
-                            string s = JsonConvert.SerializeObject(obj);
-                            redisClient.SetValue(sourceKey, s);
-                            article = extract;
-                            Wait.Set();
-                        }
+                    request.AddParameter("language", "(english)");
+                    request.AddParameter("site_category", "tech");
+
+                    var asyncHandle = client.ExecuteAsync(request, response =>{
+                        Console.WriteLine(response.Content);
                     });
+
+                    // var client = new RestClient("https://api.embed.ly/1/extract");
+                    // var request = new RestRequest(Method.GET);
+                    // request.AddParameter("key", "08ad220089e14298a88f0810a73ce70a");
+                    // request.AddParameter("url", url);
+                    EventWaitHandle Wait = new AutoResetEvent(false);
+                    // var asyncHandle = client.ExecuteAsync(request, response =>
+                    // {
+                    //     if (response.ResponseStatus == ResponseStatus.Completed)
+                    //     {
+                    //         string content = response.Content;
+                    //         dynamic extract = JsonConvert.DeserializeObject(content);
+                    //         var pdisplay = extract.provider_display;
+                    //         if (pdisplay == null) pdisplay = "GENERAL";
+                    //         var sourceKey = string.Format("html:{0}:{1}", pdisplay, title);
+                    //         var html = response.Content;
+                    //         var obj = new ExtractedArticle
+                    //         {
+                    //             date = now.ToString("u"),
+                    //             content = html
+                    //         };
+                    //         string s = JsonConvert.SerializeObject(obj);
+                    //         redisClient.SetValue(sourceKey, s);
+                    //         article = extract;
+                    //         Wait.Set();
+                    //     }
+                    // });
                     Wait.WaitOne();
                 }
             }
