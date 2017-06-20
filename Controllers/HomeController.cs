@@ -3,7 +3,6 @@ using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RestSharp;
-using ServiceStack.Redis;
 
 namespace NewlyReadv3.Controllers
 {

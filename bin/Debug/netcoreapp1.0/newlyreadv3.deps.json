@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "2354c0effb6fbccdcc800f78421bf10ce12bffb8"
+    "signature": "bd3a83bf366b83957e922146c644d78ee92fe412"
   },
   "compilationOptions": {
     "defines": [
@@ -47,7 +47,6 @@
           "Microsoft.NETCore.App": "1.1.1",
           "Microsoft.VisualStudio.Web.BrowserLink": "1.1.0",
           "RestSharp.NetCore": "105.2.3",
-          "ServiceStack.Redis.Core": "1.0.3",
           "StackExchange.Redis": "1.2.0"
         },
         "runtime": {
@@ -1633,108 +1632,6 @@
           }
         }
       },
-      "servicestack.common.core/1.0.3": {
-        "dependencies": {
-          "Microsoft.CSharp": "4.3.0",
-          "NETStandard.Library": "1.6.1",
-          "ServiceStack.Interfaces.Core": "1.0.3",
-          "ServiceStack.Text.Core": "1.0.3",
-          "System.Data.Common": "4.3.0",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.Net.Http": "4.3.0",
-          "System.Net.Requests": "4.0.11",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Emit": "4.3.0",
-          "System.Reflection.Emit.Lightweight": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Runtime.Serialization.Xml": "4.1.1",
-          "System.ServiceModel.Http": "4.1.0",
-          "System.ServiceModel.Primitives": "4.1.0",
-          "System.Xml.XmlSerializer": "4.0.11"
-        },
-        "runtime": {
-          "lib/netstandard1.2/ServiceStack.Common.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.2/ServiceStack.Common.dll": {}
-        }
-      },
-      "servicestack.interfaces.core/1.0.3": {
-        "dependencies": {
-          "Microsoft.CSharp": "4.3.0",
-          "NETStandard.Library": "1.6.1",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.Net.Http": "4.3.0",
-          "System.Net.Requests": "4.0.11",
-          "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Runtime.Serialization.Xml": "4.1.1"
-        },
-        "runtime": {
-          "lib/netstandard1.1/ServiceStack.Interfaces.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.1/ServiceStack.Interfaces.dll": {}
-        }
-      },
-      "servicestack.redis.core/1.0.3": {
-        "dependencies": {
-          "Microsoft.CSharp": "4.3.0",
-          "NETStandard.Library": "1.6.1",
-          "ServiceStack.Common.Core": "1.0.3",
-          "ServiceStack.Interfaces.Core": "1.0.3",
-          "ServiceStack.Text.Core": "1.0.3",
-          "System.Collections.NonGeneric": "4.3.0",
-          "System.Collections.Specialized": "4.3.0",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.Net.Http": "4.3.0",
-          "System.Net.NameResolution": "4.0.0",
-          "System.Net.Requests": "4.0.11",
-          "System.Net.Security": "4.0.0",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Emit": "4.3.0",
-          "System.Reflection.Emit.Lightweight": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Runtime.Serialization.Xml": "4.1.1",
-          "System.Security.Cryptography.Algorithms": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/ServiceStack.Redis.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.3/ServiceStack.Redis.dll": {}
-        }
-      },
-      "servicestack.text.core/1.0.3": {
-        "dependencies": {
-          "Microsoft.CSharp": "4.3.0",
-          "NETStandard.Library": "1.6.1",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.Net.Http": "4.3.0",
-          "System.Net.Requests": "4.0.11",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Emit": "4.3.0",
-          "System.Reflection.Emit.Lightweight": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Runtime.Serialization.Xml": "4.1.1"
-        },
-        "runtime": {
-          "lib/netstandard1.1/ServiceStack.Text.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.1/ServiceStack.Text.dll": {}
-        }
-      },
       "sqlite/3.13.0": {
         "runtimeTargets": {
           "runtimes/linux-x64/native/libsqlite3.so": {
@@ -1924,20 +1821,6 @@
         },
         "compile": {
           "ref/netstandard1.4/System.ComponentModel.Annotations.dll": {}
-        }
-      },
-      "system.componentmodel.eventbasedasync/4.0.11": {
-        "dependencies": {
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Tasks": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.ComponentModel.EventBasedAsync.dll": {}
-        },
-        "compile": {
-          "ref/netstandard1.3/System.ComponentModel.EventBasedAsync.dll": {}
         }
       },
       "system.componentmodel.primitives/4.3.0": {
@@ -2431,38 +2314,6 @@
           "ref/netstandard1.3/System.Net.WebSockets.dll": {}
         }
       },
-      "system.net.websockets.client/4.0.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.Win32.Primitives": "4.3.0",
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Diagnostics.Tracing": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.Net.Primitives": "4.3.0",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Net.WebSockets": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Runtime.Handles": "4.3.0",
-          "System.Runtime.InteropServices": "4.3.0",
-          "System.Security.Cryptography.X509Certificates": "4.3.0",
-          "System.Text.Encoding": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Tasks": "4.3.0"
-        },
-        "runtimeTargets": {
-          "runtimes/unix/lib/netstandard1.3/System.Net.WebSockets.Client.dll": {
-            "rid": "unix",
-            "assetType": "runtime"
-          },
-          "runtimes/win/lib/netstandard1.3/System.Net.WebSockets.Client.dll": {
-            "rid": "win",
-            "assetType": "runtime"
-          }
-        }
-      },
       "system.numerics.vectors/4.3.0": {
         "dependencies": {
           "System.Globalization": "4.3.0",
@@ -2521,70 +2372,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Private.DataContractSerialization.dll": {}
-        }
-      },
-      "system.private.servicemodel/4.1.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "System.Collections": "4.3.0",
-          "System.Collections.Concurrent": "4.3.0",
-          "System.Collections.NonGeneric": "4.3.0",
-          "System.Collections.Specialized": "4.3.0",
-          "System.ComponentModel.EventBasedAsync": "4.0.11",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Diagnostics.Tracing": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.IO.Compression": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.Linq.Queryable": "4.3.0",
-          "System.Net.Http": "4.3.0",
-          "System.Net.NameResolution": "4.0.0",
-          "System.Net.Primitives": "4.3.0",
-          "System.Net.Security": "4.0.0",
-          "System.Net.Sockets": "4.3.0",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Net.WebSockets": "4.3.0",
-          "System.Net.WebSockets.Client": "4.0.0",
-          "System.ObjectModel": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.DispatchProxy": "4.0.1",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Reflection.Primitives": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Runtime.Handles": "4.3.0",
-          "System.Runtime.InteropServices.RuntimeInformation": "4.3.0",
-          "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Runtime.Serialization.Xml": "4.1.1",
-          "System.Security.Claims": "4.3.0",
-          "System.Security.Cryptography.Algorithms": "4.3.0",
-          "System.Security.Cryptography.Encoding": "4.3.0",
-          "System.Security.Cryptography.Primitives": "4.3.0",
-          "System.Security.Cryptography.X509Certificates": "4.3.0",
-          "System.Security.Principal": "4.3.0",
-          "System.Security.Principal.Windows": "4.3.0",
-          "System.Text.Encoding": "4.3.0",
-          "System.Text.Encoding.Extensions": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Tasks": "4.3.0",
-          "System.Threading.Timer": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0",
-          "System.Xml.XmlDocument": "4.0.1",
-          "System.Xml.XmlSerializer": "4.0.11"
-        },
-        "runtimeTargets": {
-          "runtimes/unix/lib/netstandard1.3/System.Private.ServiceModel.dll": {
-            "rid": "unix",
-            "assetType": "runtime"
-          },
-          "runtimes/win7/lib/netstandard1.3/System.Private.ServiceModel.dll": {
-            "rid": "win7",
-            "assetType": "runtime"
-          }
         }
       },
       "system.reflection/4.3.0": {
@@ -3135,49 +2922,6 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Security.Principal.Windows.dll": {}
-        }
-      },
-      "system.servicemodel.http/4.1.0": {
-        "dependencies": {
-          "System.Net.Primitives": "4.3.0",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Private.ServiceModel": "4.1.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Serialization.Xml": "4.1.1",
-          "System.ServiceModel.Primitives": "4.1.0",
-          "System.Text.Encoding": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.ServiceModel.Http.dll": {}
-        },
-        "compile": {
-          "ref/netstandard1.3/System.ServiceModel.Http.dll": {}
-        }
-      },
-      "system.servicemodel.primitives/4.1.0": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.ComponentModel.EventBasedAsync": "4.0.11",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Net.Primitives": "4.3.0",
-          "System.ObjectModel": "4.3.0",
-          "System.Private.ServiceModel": "4.1.0",
-          "System.Reflection": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Runtime.Serialization.Xml": "4.1.1",
-          "System.Security.Cryptography.X509Certificates": "4.3.0",
-          "System.Security.Principal": "4.3.0",
-          "System.Text.Encoding": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.ServiceModel.Primitives.dll": {}
-        },
-        "compile": {
-          "ref/netstandard1.3/System.ServiceModel.Primitives.dll": {}
         }
       },
       "system.text.encoding/4.3.0": {
@@ -4682,34 +4426,6 @@
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
     },
-    "servicestack.common.core/1.0.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-YdRIAFw6Q1aF9IcF9ltO1TNa17R/n/FsDvJsTQiY/522d68oieMh3tjvGEGCpl9mhALy/q4JU5LlFtq7OJJ6hQ==",
-      "path": "servicestack.common.core/1.0.3",
-      "hashPath": "servicestack.common.core.1.0.3.nupkg.sha512"
-    },
-    "servicestack.interfaces.core/1.0.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-4A+WAJS95esQoOQvsVW4mnrX9rZcVv4bJ/toMqWoXw+euXZ84aSEJxVAj3d/KvdwDevzwan9jYh1KjDZacGqYA==",
-      "path": "servicestack.interfaces.core/1.0.3",
-      "hashPath": "servicestack.interfaces.core.1.0.3.nupkg.sha512"
-    },
-    "servicestack.redis.core/1.0.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-7cehaBbDWsL0Fv05Ej8s8U14jKZtt8I55lfCpdmlxom/s540EUzy15YiCaXxN4Wr83jRb/lDxMhHN2wA2qb3JA==",
-      "path": "servicestack.redis.core/1.0.3",
-      "hashPath": "servicestack.redis.core.1.0.3.nupkg.sha512"
-    },
-    "servicestack.text.core/1.0.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-izq1NYFbHUMNKT7toUu+txfFhqAJr7wQkKVji6ruH7hkAN6w+zA+MYwZmmtESTuEohPLVOw0Kbouw5Hko4SJeA==",
-      "path": "servicestack.text.core/1.0.3",
-      "hashPath": "servicestack.text.core.1.0.3.nupkg.sha512"
-    },
     "sqlite/3.13.0": {
       "type": "package",
       "serviceable": true,
@@ -4786,13 +4502,6 @@
       "sha512": "sha512-rYyyrDUp+sWt9gGptZNsvgMSSwcUIOApwKXaHU2DG8pyZ99rB7kZKYrXbvC38UuOiVzrdGNz/Hby4LkGq0AxRA==",
       "path": "system.componentmodel.annotations/4.3.0",
       "hashPath": "system.componentmodel.annotations.4.3.0.nupkg.sha512"
-    },
-    "system.componentmodel.eventbasedasync/4.0.11": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Z7SO6vvQIR84daPE4uhaNdef9CjgjDMGYkas8epUhf0U3WGuaGgZ0Mm4QuNycMdbHUY8KEdZrtgxonkAiJaAlA==",
-      "path": "system.componentmodel.eventbasedasync/4.0.11",
-      "hashPath": "system.componentmodel.eventbasedasync.4.0.11.nupkg.sha512"
     },
     "system.componentmodel.primitives/4.3.0": {
       "type": "package",
@@ -4990,13 +4699,6 @@
       "path": "system.net.websockets/4.3.0",
       "hashPath": "system.net.websockets.4.3.0.nupkg.sha512"
     },
-    "system.net.websockets.client/4.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-GY5h9cn0ZVsG4ORQqMytTldrqxet2RC2CSEsgWGf4XNW5jhL5SxzcUZph03xbZsgn7K3qMr+Rq+gkbJNI+FEXg==",
-      "path": "system.net.websockets.client/4.0.0",
-      "hashPath": "system.net.websockets.client.4.0.0.nupkg.sha512"
-    },
     "system.numerics.vectors/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -5017,13 +4719,6 @@
       "sha512": "sha512-lcqFBUaCZxPiUkA4dlSOoPZGtZsAuuElH2XHgLwGLxd7ZozWetV5yiz0qGAV2AUYOqw97MtZBjbLMN16Xz4vXA==",
       "path": "system.private.datacontractserialization/4.1.1",
       "hashPath": "system.private.datacontractserialization.4.1.1.nupkg.sha512"
-    },
-    "system.private.servicemodel/4.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-/QviVqIgta03ms7IDFALHCJOQCANZ1lILobf/OoLzdphHN40M3r6zqso2NsKvvSV7rJus+QLLWS/q33XGIybrQ==",
-      "path": "system.private.servicemodel/4.1.0",
-      "hashPath": "system.private.servicemodel.4.1.0.nupkg.sha512"
     },
     "system.reflection/4.3.0": {
       "type": "package",
@@ -5241,20 +4936,6 @@
       "sha512": "sha512-Bv7RJWXz2OazfpQhccP3ER1cRLlxsICb8y0SMID/UhbhvF8/i9E1bruDvwkdH2p8jBZzQDZG+EFhpRWCctH7+w==",
       "path": "system.security.principal.windows/4.3.0",
       "hashPath": "system.security.principal.windows.4.3.0.nupkg.sha512"
-    },
-    "system.servicemodel.http/4.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-sCIV+wrA4Antjnk0+fk6rxpzQkd2bReN4UTipGv5iyPNApVv/KtAfeDMg+YIajJ7VkQD60uVBTQmy3LZrRnNOw==",
-      "path": "system.servicemodel.http/4.1.0",
-      "hashPath": "system.servicemodel.http.4.1.0.nupkg.sha512"
-    },
-    "system.servicemodel.primitives/4.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Kd65HOn/5pL9xtCUkSL8xVqpqBUYy9tsfo0qe/MTTzApY8WQ+6i4I2ts++M+m4vbOanCoEsjjUj26P6C6ilQjQ==",
-      "path": "system.servicemodel.primitives/4.1.0",
-      "hashPath": "system.servicemodel.primitives.4.1.0.nupkg.sha512"
     },
     "system.text.encoding/4.3.0": {
       "type": "package",

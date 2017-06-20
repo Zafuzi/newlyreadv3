@@ -6,14 +6,17 @@ using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RestSharp;
-using ServiceStack.Redis;
 using StackExchange.Redis;
 
 namespace NewlyReadv3.Controllers
 {
+    
     [Route("api/[controller]")]
     public class v1 : Controller
     {
+        private static ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("127.0.0.1");
+        private static IDatabase db = redis.GetDatabase();
+        private static IServer server = redis.GetServer("127.0.0.1:6379");
         [HttpGet]
         public dynamic Get()
         {
@@ -42,108 +45,94 @@ namespace NewlyReadv3.Controllers
         public static dynamic getSources()
         {
             dynamic data = "";
-            using (var db = new RedisClient())
+            if (db.StringGet("sources").IsNullOrEmpty)
             {
-                if (!db.ContainsKey("sources"))
-                {
-                    return "Error: Database returned nothing.";
-                }
-                data = JsonConvert.DeserializeObject(db.Get<dynamic>("sources"));
+                return "Error: Database returned nothing.";
             }
+            data = JsonConvert.DeserializeObject(db.StringGet("sources"));
             return data;
         }
 
         public static dynamic getArticles(string category)
         {
+            List<String> articlesFromSources = new List<String>();
+            var keysToScan = string.Format("articles:{0}:*", category);
+            // show all keys in database 0 that include "foo" in their name
+            foreach(var key in server.Keys(pattern: keysToScan)) {
+                articlesFromSources.Add(key);
+            }
+
             dynamic data = "";
-            using (var redisClient = new RedisClient())
+            
+            List<dynamic> articles = new List<dynamic>();
+            
+            foreach (var key in articlesFromSources)
             {
-                var keysToScan = string.Format("articles:{0}:*", category);
-                var articlesFromSources = redisClient.ScanAllKeys(keysToScan);
-                List<dynamic> articles = new List<dynamic>();
-                foreach (dynamic source in articlesFromSources)
+                try
                 {
-                    if (source != null && source.Length > 0)
+                    dynamic key_data = JsonConvert.DeserializeObject(db.StringGet(key));
+                    if (data != null)
                     {
-                        try
+                        foreach (dynamic item in key_data.articles)
                         {
-                            dynamic temp = JsonConvert.DeserializeObject(redisClient.GetValue(source));
-                            if (data != null)
-                            {
-                                foreach (dynamic item in temp.articles)
-                                {
-                                    string date = item.publishedAt;
-                                    item.publishedAt = date;
-                                    articles.Add(item);
-                                }
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("\n Error reading articles from DB: {0} \n {1}", source, e);
+                            string date = item.publishedAt;
+                            item.publishedAt = date;
+                            articles.Add(item);
                         }
                     }
                 }
-                data = articles.OrderByDescending(item => item.publishedAt).ToList();
+                catch (Exception e)
+                {
+                    Console.WriteLine("\n Error reading articles from DB: {0} \n", e);
+                }
             }
+            data = articles.OrderByDescending(item => item.publishedAt).ToList();
             return data;
         }
 
         public static dynamic getExtracted()
         {
             dynamic data = "";
+            List<dynamic> articles = new List<dynamic>();
+            List<String> keys = new List<String>();
+            var keysToScan = string.Format("html:*");
+            // show all keys in database 0 that include "foo" in their name
+            foreach(var key in server.Keys(pattern: keysToScan)) {
+                keys.Add(key);
+            }
 
-            var redisManager = new RedisManagerPool("redis://localhost:6379?ConnectTimeout=5000&IdleTimeOutSecs=180&abortConnect=false");
-
-            using (var client = redisManager.GetClient())
+            foreach (var key in keys)
             {
-                List<dynamic> articles = new List<dynamic>();
-                foreach (var key in client.GetKeysByPattern(pattern: "html:*"))
+                string source = db.StringGet(key);
+                if (source != null && source.Length > 0)
                 {
-                    string source = client.GetValue(key);
-                    if (source != null && source.Length > 0)
+                    try
                     {
-                        try
-                        {
-                            dynamic temp = JsonConvert.DeserializeObject(source);
-                            articles.Add(temp);
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("\n Error reading articles from DB: {0} \n", e);
-                        }
+                        dynamic temp = JsonConvert.DeserializeObject(source);
+                        articles.Add(temp);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("\n Error reading articles from DB: {0} \n", e);
                     }
                 }
-                data = articles.OrderByDescending(item => item.date);
-                // foreach (dynamic item in data)
-                // {
-                //     try
-                //     {
-                //         item.content = ;
-                //     }
-                //     catch (Exception e)
-                //     {
-                //         Console.WriteLine("Error converting content for article: {0} \n", e);
-                //     }
-
-                // }
-
             }
+            data = articles.OrderByDescending(item => item.date);
 
             return data;
         }
         [HttpGet("extract/{url}")]
         public static dynamic Extract(string url, string title)
         {
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("127.0.0.1");
+            IDatabase db = redis.GetDatabase();
+            IServer server = redis.GetServer("127.0.0.1:6379");
             DateTime now = DateTime.UtcNow;
             dynamic article = "";
-
-            using (var redisClient = new RedisClient())
-            {
-                string x = string.Format("html:{0}", title);
-                if (redisClient.ContainsKey(x))
+                string article_key = string.Format("html:{0}", title);
+                if (db.KeyExists(article_key))
                 {
-                    article = JsonConvert.DeserializeObject(redisClient.GetValue(x));
+                    article = JsonConvert.DeserializeObject(db.StringGet(article_key));
                     Console.WriteLine("\n\n FOUND IN DB \n\n");
                 }
                 else
@@ -179,43 +168,15 @@ namespace NewlyReadv3.Controllers
                                 };
 
                                 string s = JsonConvert.SerializeObject(obj);
-                                redisClient.SetValue(sourceKey, s);
+                                db.StringSet(sourceKey, s);
                                 article = extract;
                             }catch(Exception e){
                                 Console.WriteLine("General Exception caught: " + e);
                             }
                             Wait.Set();
                     });
-
-                    // var client = new RestClient("https://api.embed.ly/1/extract");
-                    // var request = new RestRequest(Method.GET);
-                    // request.AddParameter("key", "08ad220089e14298a88f0810a73ce70a");
-                    // request.AddParameter("url", url);
-                    
-                    // var asyncHandle = client.ExecuteAsync(request, response =>
-                    // {
-                    //     if (response.ResponseStatus == ResponseStatus.Completed)
-                    //     {
-                    //         string content = response.Content;
-                    //         dynamic extract = JsonConvert.DeserializeObject(content);
-                    //         var pdisplay = extract.provider_display;
-                    //         if (pdisplay == null) pdisplay = "GENERAL";
-                    //         var sourceKey = string.Format("html:{0}:{1}", pdisplay, title);
-                    //         var html = response.Content;
-                    //         var obj = new ExtractedArticle
-                    //         {
-                    //             date = now.ToString("u"),
-                    //             content = html
-                    //         };
-                    //         string s = JsonConvert.SerializeObject(obj);
-                    //         redisClient.SetValue(sourceKey, s);
-                    //         article = extract;
-                    //         Wait.Set();
-                    //     }
-                    // });
                     Wait.WaitOne();
                 }
-            }
             return article;
         }
 
