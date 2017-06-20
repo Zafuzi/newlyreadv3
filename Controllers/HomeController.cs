@@ -15,6 +15,7 @@ namespace NewlyReadv3.Controllers
         [Route("Home/Index")]
         public IActionResult Index()
         {
+            ViewBag.Articles = NewlyReadv3.Controllers.v1.getExtracted();
             return View();
         }
 
@@ -27,11 +28,18 @@ namespace NewlyReadv3.Controllers
         public IActionResult Category(string category)
         {
             ViewBag.Articles = NewlyReadv3.Controllers.v1.getArticles(category);
+            ViewBag.Category = category.ToUpperInvariant();
             return View();
         }
 
         public IActionResult ViewArticle(string url, string title){
-            ViewBag.Article = NewlyReadv3.Controllers.v1.Extract(url, title);
+            dynamic article = NewlyReadv3.Controllers.v1.Extract(url, title);
+            try{
+                ViewBag.Article = article;
+                Console.WriteLine("\n\n Article Content: {0} \n\n", ViewBag.Article.content);
+            } catch(Exception e){
+                Console.WriteLine("Exception caught while trying to deserialize article: " + e);
+            }
             ViewBag.Original = url;
             return View();
         }

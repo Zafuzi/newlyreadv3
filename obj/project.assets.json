@@ -1754,32 +1754,6 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
-      "ReadSharp.Ports.NReadability.Core/1.0.1": {
-        "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "ReadSharp.Ports.SgmlReader.Core": "1.0.0"
-        },
-        "compile": {
-          "lib/netstandard1.0/ReadSharp.Ports.NReadability.Core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.0/ReadSharp.Ports.NReadability.Core.dll": {}
-        }
-      },
-      "ReadSharp.Ports.SgmlReader.Core/1.0.0": {
-        "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "System.Net.Requests": "4.3.0"
-        },
-        "compile": {
-          "lib/netstandard1.0/ReadSharp.Ports.SgmlReader.Core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.0/ReadSharp.Ports.SgmlReader.Core.dll": {}
-        }
-      },
       "Remotion.Linq/2.1.1": {
         "type": "package",
         "dependencies": {
@@ -3013,22 +2987,22 @@
           "ref/netstandard1.3/System.Net.Primitives.dll": {}
         }
       },
-      "System.Net.Requests/4.3.0": {
+      "System.Net.Requests/4.0.11": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Diagnostics.Tracing": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Net.Http": "4.3.0",
-          "System.Net.Primitives": "4.3.0",
-          "System.Net.WebHeaderCollection": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Tasks": "4.3.0"
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "System.Collections": "4.0.11",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Globalization": "4.0.11",
+          "System.IO": "4.1.0",
+          "System.Net.Http": "4.1.0",
+          "System.Net.Primitives": "4.0.11",
+          "System.Net.WebHeaderCollection": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.Requests.dll": {}
@@ -3104,13 +3078,13 @@
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
         }
       },
-      "System.Net.WebHeaderCollection/4.3.0": {
+      "System.Net.WebHeaderCollection/4.0.1": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0"
+          "System.Collections": "4.0.11",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
@@ -5830,26 +5804,6 @@
         "tools/install.ps1"
       ]
     },
-    "ReadSharp.Ports.NReadability.Core/1.0.1": {
-      "sha512": "TK8lq9Z4nNqEjI5rVZT9vuQBuUjS0EzyiuRJX4KZzV7ePLlUepmsgqNB5n23VHP8jS1sJOGfrx1CcQeZkrx6Kg==",
-      "type": "package",
-      "path": "readsharp.ports.nreadability.core/1.0.1",
-      "files": [
-        "lib/netstandard1.0/ReadSharp.Ports.NReadability.Core.dll",
-        "readsharp.ports.nreadability.core.1.0.1.nupkg.sha512",
-        "readsharp.ports.nreadability.core.nuspec"
-      ]
-    },
-    "ReadSharp.Ports.SgmlReader.Core/1.0.0": {
-      "sha512": "F6Ddu4lxDzU6QZlgVA4JXEo44lcP7OTAamBtapZWsEYeNJrDUpYQ2UvFv5F233uP/cReh10T9bbx8/FrLpIcFQ==",
-      "type": "package",
-      "path": "readsharp.ports.sgmlreader.core/1.0.0",
-      "files": [
-        "lib/netstandard1.0/ReadSharp.Ports.SgmlReader.Core.dll",
-        "readsharp.ports.sgmlreader.core.1.0.0.nupkg.sha512",
-        "readsharp.ports.sgmlreader.core.nuspec"
-      ]
-    },
     "Remotion.Linq/2.1.1": {
       "sha512": "GcW9Zz8fmPO3mzniGhcs5IIJ3+QRqnZSIcw3onCaVjCI2ndqsz8gsr0MkveJFaYJP6zkg20Dznqj3nbJoo2tlA==",
       "type": "package",
@@ -8318,10 +8272,10 @@
         "system.net.primitives.nuspec"
       ]
     },
-    "System.Net.Requests/4.3.0": {
-      "sha512": "rMx/BPuf5X2f72Z90spbR9+w3H9KjVryjy+VtYIEwiS/KK+8PBCbG9jT8nsTS63HzUi1PukMkJj7i3NlVswS+Q==",
+    "System.Net.Requests/4.0.11": {
+      "sha512": "TPxf31KHqcSOoNTqI1dAa3ZaJ6+i8P/QVbpDgue5nefNX4PumtpEqet0v3jro78ewfG47hdPcC6Jvcdg+Il3Ug==",
       "type": "package",
-      "path": "system.net.requests/4.3.0",
+      "path": "system.net.requests/4.0.11",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -8395,7 +8349,7 @@
         "runtimes/unix/lib/netstandard1.3/System.Net.Requests.dll",
         "runtimes/win/lib/net46/_._",
         "runtimes/win/lib/netstandard1.3/System.Net.Requests.dll",
-        "system.net.requests.4.3.0.nupkg.sha512",
+        "system.net.requests.4.0.11.nupkg.sha512",
         "system.net.requests.nuspec"
       ]
     },
@@ -8475,10 +8429,10 @@
         "system.net.sockets.nuspec"
       ]
     },
-    "System.Net.WebHeaderCollection/4.3.0": {
-      "sha512": "s1hfB8jCnlrcHTgxxYFvoYjB9NyR0cC1NatD0HDO6QfNgNfs5bsig3hPkzEqCXTJBpS56HKloCBGDCYe6umM4w==",
+    "System.Net.WebHeaderCollection/4.0.1": {
+      "sha512": "gHZ9dEsaTRb1ur2FoKD/Jy8YZKHAFrgpmJgS4Wqu/KRAGnEtOxKdkOu0rqtgy1ughfrd3nz3H6NdBBoDviVJWQ==",
       "type": "package",
-      "path": "system.net.webheadercollection/4.3.0",
+      "path": "system.net.webheadercollection/4.0.1",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -8508,7 +8462,7 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.net.webheadercollection.4.3.0.nupkg.sha512",
+        "system.net.webheadercollection.4.0.1.nupkg.sha512",
         "system.net.webheadercollection.nuspec"
       ]
     },
@@ -11263,7 +11217,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.0": [
-      "HtmlAgilityPack.NetCore >= 1.5.0",
+      "HtmlAgilityPack.NetCore >= 1.5.0.1",
       "Microsoft.AspNetCore.Authentication.Cookies >= 1.1.1",
       "Microsoft.AspNetCore.Diagnostics >= 1.1.1",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 1.1.1",
@@ -11286,7 +11240,6 @@
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.1.1",
       "Microsoft.NETCore.App >= 1.1.1",
       "Microsoft.VisualStudio.Web.BrowserLink >= 1.1.0",
-      "ReadSharp.Ports.NReadability.Core >= 1.0.1",
       "RestSharp.NetCore >= 105.2.3",
       "ServiceStack.Redis.Core >= 1.0.3",
       "StackExchange.Redis >= 1.2.0"
@@ -11422,11 +11375,7 @@
           },
           "HtmlAgilityPack.NetCore": {
             "target": "Package",
-            "version": "1.5.0"
-          },
-          "ReadSharp.Ports.NReadability.Core": {
-            "target": "Package",
-            "version": "1.0.1"
+            "version": "1.5.0.1"
           }
         },
         "imports": [

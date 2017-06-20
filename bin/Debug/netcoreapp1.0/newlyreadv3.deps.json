@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "2195fd728420d1f5e0d348247338f258af6c655b"
+    "signature": "2354c0effb6fbccdcc800f78421bf10ce12bffb8"
   },
   "compilationOptions": {
     "defines": [
@@ -46,7 +46,6 @@
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.1",
           "Microsoft.NETCore.App": "1.1.1",
           "Microsoft.VisualStudio.Web.BrowserLink": "1.1.0",
-          "ReadSharp.Ports.NReadability.Core": "1.0.1",
           "RestSharp.NetCore": "105.2.3",
           "ServiceStack.Redis.Core": "1.0.3",
           "StackExchange.Redis": "1.2.0"
@@ -1466,30 +1465,6 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
-      "readsharp.ports.nreadability.core/1.0.1": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "ReadSharp.Ports.SgmlReader.Core": "1.0.0"
-        },
-        "runtime": {
-          "lib/netstandard1.0/ReadSharp.Ports.NReadability.Core.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.0/ReadSharp.Ports.NReadability.Core.dll": {}
-        }
-      },
-      "readsharp.ports.sgmlreader.core/1.0.0": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "System.Net.Requests": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.0/ReadSharp.Ports.SgmlReader.Core.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.0/ReadSharp.Ports.SgmlReader.Core.dll": {}
-        }
-      },
       "remotion.linq/2.1.1": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -1517,7 +1492,7 @@
           "Newtonsoft.Json": "9.0.1",
           "System.Collections.Specialized": "4.3.0",
           "System.ComponentModel.TypeConverter": "4.3.0",
-          "System.Net.Requests": "4.3.0",
+          "System.Net.Requests": "4.0.11",
           "System.Reflection": "4.3.0",
           "System.Reflection.Emit": "4.3.0",
           "System.Runtime.InteropServices": "4.3.0",
@@ -1669,7 +1644,7 @@
           "System.IO": "4.3.0",
           "System.Linq.Expressions": "4.3.0",
           "System.Net.Http": "4.3.0",
-          "System.Net.Requests": "4.3.0",
+          "System.Net.Requests": "4.0.11",
           "System.Reflection": "4.3.0",
           "System.Reflection.Emit": "4.3.0",
           "System.Reflection.Emit.Lightweight": "4.3.0",
@@ -1695,7 +1670,7 @@
           "System.IO": "4.3.0",
           "System.Linq.Expressions": "4.3.0",
           "System.Net.Http": "4.3.0",
-          "System.Net.Requests": "4.3.0",
+          "System.Net.Requests": "4.0.11",
           "System.Runtime.Serialization.Primitives": "4.3.0",
           "System.Runtime.Serialization.Xml": "4.1.1"
         },
@@ -1720,7 +1695,7 @@
           "System.Linq.Expressions": "4.3.0",
           "System.Net.Http": "4.3.0",
           "System.Net.NameResolution": "4.0.0",
-          "System.Net.Requests": "4.3.0",
+          "System.Net.Requests": "4.0.11",
           "System.Net.Security": "4.0.0",
           "System.Reflection": "4.3.0",
           "System.Reflection.Emit": "4.3.0",
@@ -1745,7 +1720,7 @@
           "System.IO": "4.3.0",
           "System.Linq.Expressions": "4.3.0",
           "System.Net.Http": "4.3.0",
-          "System.Net.Requests": "4.3.0",
+          "System.Net.Requests": "4.0.11",
           "System.Reflection": "4.3.0",
           "System.Reflection.Emit": "4.3.0",
           "System.Reflection.Emit.Lightweight": "4.3.0",
@@ -2429,36 +2404,6 @@
           "ref/netstandard1.3/System.Net.Primitives.dll": {}
         }
       },
-      "system.net.requests/4.3.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Diagnostics.Tracing": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Net.Http": "4.3.0",
-          "System.Net.Primitives": "4.3.0",
-          "System.Net.WebHeaderCollection": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Tasks": "4.3.0"
-        },
-        "runtimeTargets": {
-          "runtimes/unix/lib/netstandard1.3/System.Net.Requests.dll": {
-            "rid": "unix",
-            "assetType": "runtime"
-          },
-          "runtimes/win/lib/netstandard1.3/System.Net.Requests.dll": {
-            "rid": "win",
-            "assetType": "runtime"
-          }
-        },
-        "compile": {
-          "ref/netstandard1.3/System.Net.Requests.dll": {}
-        }
-      },
       "system.net.sockets/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -2470,20 +2415,6 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
-        }
-      },
-      "system.net.webheadercollection/4.3.0": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
-        },
-        "compile": {
-          "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
         }
       },
       "system.net.websockets/4.3.0": {
@@ -2509,7 +2440,7 @@
           "System.Diagnostics.Tracing": "4.3.0",
           "System.Globalization": "4.3.0",
           "System.Net.Primitives": "4.3.0",
-          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.0.1",
           "System.Net.WebSockets": "4.3.0",
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0",
@@ -2613,7 +2544,7 @@
           "System.Net.Primitives": "4.3.0",
           "System.Net.Security": "4.0.0",
           "System.Net.Sockets": "4.3.0",
-          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.0.1",
           "System.Net.WebSockets": "4.3.0",
           "System.Net.WebSockets.Client": "4.0.0",
           "System.ObjectModel": "4.3.0",
@@ -3209,7 +3140,7 @@
       "system.servicemodel.http/4.1.0": {
         "dependencies": {
           "System.Net.Primitives": "4.3.0",
-          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.0.1",
           "System.Private.ServiceModel": "4.1.0",
           "System.Runtime": "4.3.0",
           "System.Runtime.Serialization.Xml": "4.1.1",
@@ -3561,9 +3492,9 @@
           "System.Linq.Queryable": "4.3.0",
           "System.Net.Http": "4.3.0",
           "System.Net.NameResolution": "4.0.0",
-          "System.Net.Requests": "4.3.0",
+          "System.Net.Requests": "4.0.11",
           "System.Net.Security": "4.0.0",
-          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.0.1",
           "System.Numerics.Vectors": "4.3.0",
           "System.Reflection.DispatchProxy": "4.0.1",
           "System.Reflection.Metadata": "1.4.1",
@@ -3767,6 +3698,27 @@
         },
         "compileOnly": true
       },
+      "system.net.requests/4.0.11": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.0.1",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Net.Requests.dll": {}
+        },
+        "compileOnly": true
+      },
       "system.net.security/4.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -3800,6 +3752,18 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Net.Security.dll": {}
+        },
+        "compileOnly": true
+      },
+      "system.net.webheadercollection/4.0.1": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
         },
         "compileOnly": true
       },
@@ -4592,20 +4556,6 @@
       "path": "newtonsoft.json/9.0.1",
       "hashPath": "newtonsoft.json.9.0.1.nupkg.sha512"
     },
-    "readsharp.ports.nreadability.core/1.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-TK8lq9Z4nNqEjI5rVZT9vuQBuUjS0EzyiuRJX4KZzV7ePLlUepmsgqNB5n23VHP8jS1sJOGfrx1CcQeZkrx6Kg==",
-      "path": "readsharp.ports.nreadability.core/1.0.1",
-      "hashPath": "readsharp.ports.nreadability.core.1.0.1.nupkg.sha512"
-    },
-    "readsharp.ports.sgmlreader.core/1.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-F6Ddu4lxDzU6QZlgVA4JXEo44lcP7OTAamBtapZWsEYeNJrDUpYQ2UvFv5F233uP/cReh10T9bbx8/FrLpIcFQ==",
-      "path": "readsharp.ports.sgmlreader.core/1.0.0",
-      "hashPath": "readsharp.ports.sgmlreader.core.1.0.0.nupkg.sha512"
-    },
     "remotion.linq/2.1.1": {
       "type": "package",
       "serviceable": true,
@@ -5026,26 +4976,12 @@
       "path": "system.net.primitives/4.3.0",
       "hashPath": "system.net.primitives.4.3.0.nupkg.sha512"
     },
-    "system.net.requests/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-rMx/BPuf5X2f72Z90spbR9+w3H9KjVryjy+VtYIEwiS/KK+8PBCbG9jT8nsTS63HzUi1PukMkJj7i3NlVswS+Q==",
-      "path": "system.net.requests/4.3.0",
-      "hashPath": "system.net.requests.4.3.0.nupkg.sha512"
-    },
     "system.net.sockets/4.3.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-NaP8ae9AymCoKljqEj9b1wfOGTs0xaBoctkkG5IaVPbUkUG+7rKVm+Dms8xGqAWlIn9RoBr436LhK/JIWsA8fw==",
       "path": "system.net.sockets/4.3.0",
       "hashPath": "system.net.sockets.4.3.0.nupkg.sha512"
-    },
-    "system.net.webheadercollection/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-s1hfB8jCnlrcHTgxxYFvoYjB9NyR0cC1NatD0HDO6QfNgNfs5bsig3hPkzEqCXTJBpS56HKloCBGDCYe6umM4w==",
-      "path": "system.net.webheadercollection/4.3.0",
-      "hashPath": "system.net.webheadercollection.4.3.0.nupkg.sha512"
     },
     "system.net.websockets/4.3.0": {
       "type": "package",
@@ -5565,12 +5501,26 @@
       "path": "system.net.nameresolution/4.0.0",
       "hashPath": "system.net.nameresolution.4.0.0.nupkg.sha512"
     },
+    "system.net.requests/4.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TPxf31KHqcSOoNTqI1dAa3ZaJ6+i8P/QVbpDgue5nefNX4PumtpEqet0v3jro78ewfG47hdPcC6Jvcdg+Il3Ug==",
+      "path": "system.net.requests/4.0.11",
+      "hashPath": "system.net.requests.4.0.11.nupkg.sha512"
+    },
     "system.net.security/4.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-B+YazWqQFhFY/7c+Zwjl4VQ5taClUX/BOy6m86Nr9Y4aUiYb+1B2DhyN7qFWk3/liJD8E3l4Tc/MMxq5V80dSA==",
       "path": "system.net.security/4.0.0",
       "hashPath": "system.net.security.4.0.0.nupkg.sha512"
+    },
+    "system.net.webheadercollection/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gHZ9dEsaTRb1ur2FoKD/Jy8YZKHAFrgpmJgS4Wqu/KRAGnEtOxKdkOu0rqtgy1ughfrd3nz3H6NdBBoDviVJWQ==",
+      "path": "system.net.webheadercollection/4.0.1",
+      "hashPath": "system.net.webheadercollection.4.0.1.nupkg.sha512"
     },
     "system.reflection.dispatchproxy/4.0.1": {
       "type": "package",

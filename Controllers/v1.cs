@@ -80,7 +80,7 @@ namespace NewlyReadv3.Controllers
                         }
                         catch (Exception e)
                         {
-                            //Console.WriteLine("\n Error reading articles from DB: {0} \n {1}", source, e);
+                            Console.WriteLine("\n Error reading articles from DB: {0} \n {1}", source, e);
                         }
                     }
                 }
@@ -110,23 +110,23 @@ namespace NewlyReadv3.Controllers
                         }
                         catch (Exception e)
                         {
-                            //Console.WriteLine("\n Error reading articles from DB: {0} \n {1} \n", source, e);
+                            Console.WriteLine("\n Error reading articles from DB: {0} \n", e);
                         }
                     }
                 }
                 data = articles.OrderByDescending(item => item.date);
-                foreach (dynamic item in data)
-                {
-                    try
-                    {
-                        item.content = JsonConvert.DeserializeObject(item);
-                    }
-                    catch (Exception e)
-                    {
-                        //Console.WriteLine("Error converting content for article: {0} \n {1} \n", item, e);
-                    }
+                // foreach (dynamic item in data)
+                // {
+                //     try
+                //     {
+                //         item.content = ;
+                //     }
+                //     catch (Exception e)
+                //     {
+                //         Console.WriteLine("Error converting content for article: {0} \n", e);
+                //     }
 
-                }
+                // }
 
             }
 
@@ -150,21 +150,48 @@ namespace NewlyReadv3.Controllers
                 {
                     Console.WriteLine("\n\n NOT IN DB \n\n");
                     // Contact
-
-                    var client = new RestClient("http://webhose.io/search?token=ac283902-3c83-4eb5-baf3-8108376e137e&format=json&q=");
+                    var TOKEN = "4305b7c99372aca246ab9a79fb8658fe";
+                    var client = new RestClient("https://api.diffbot.com/v3/article");
                     var request = new RestRequest(Method.GET);
-                    request.AddParameter("language", "(english)");
-                    request.AddParameter("site_category", "tech");
+                    request.AddParameter("token", TOKEN);
+                    request.AddParameter("url", url);
+
+                    EventWaitHandle Wait = new AutoResetEvent(false);
 
                     var asyncHandle = client.ExecuteAsync(request, response =>{
-                        Console.WriteLine(response.Content);
+                            string content = response.Content;
+                            dynamic extract, objects;
+                            try{
+                                extract = JsonConvert.DeserializeObject(content);
+                                objects = extract.objects;
+                                // Console.WriteLine(objects[0]);
+
+                                title = title.Replace(":", "");
+
+                                var site_name = objects[0].siteName;
+                                if (site_name == null) site_name = "GENERAL";
+                                var sourceKey = string.Format("html:{0}:{1}", site_name, title);
+                                var html = JsonConvert.SerializeObject(objects[0]);
+                                var obj = new ExtractedArticle
+                                {
+                                    date = now.ToString("u"),
+                                    content = html
+                                };
+
+                                string s = JsonConvert.SerializeObject(obj);
+                                redisClient.SetValue(sourceKey, s);
+                                article = extract;
+                            }catch(Exception e){
+                                Console.WriteLine("General Exception caught: " + e);
+                            }
+                            Wait.Set();
                     });
 
                     // var client = new RestClient("https://api.embed.ly/1/extract");
                     // var request = new RestRequest(Method.GET);
                     // request.AddParameter("key", "08ad220089e14298a88f0810a73ce70a");
                     // request.AddParameter("url", url);
-                    EventWaitHandle Wait = new AutoResetEvent(false);
+                    
                     // var asyncHandle = client.ExecuteAsync(request, response =>
                     // {
                     //     if (response.ResponseStatus == ResponseStatus.Completed)

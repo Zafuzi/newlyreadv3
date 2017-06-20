@@ -1,32 +1,38 @@
 span.
     @using NewlyReadv3.Tools;
     @using Newtonsoft.Json;
-h2 Click on one of the categories in the menu to the left to get started.
+h2 Recent Articles
 
-//- span.articles.
-//-     @{
-//-         int i = 0;
-//-     }
-//-     @foreach(dynamic article in ViewBag.Articles){
-//-         if(i >= 12){
-//-             return;
-//-         }
-//-         var content = JsonConvert.DeserializeObject("" + article.content);
-//-         <a href="~/Home/ViewArticle?url=@content.original_url&title=@content.title" class="article">
-//-             <paper-card>
-//-                 <div class="card-image">
-//-                     @if(content.images.Count > 0){
-//-                         <img class="lazyload" src="~/images/news.png" data-src="@content.images[0].url" alt="Missing Article Image">
-//-                     }else{
-//-                         <img class="lazyload" src="~/images/news.png" alt="Missing Article Image">
-//-                     }
-//-                 </div>
-//-                 <div class="card-content">
-//-                     <h4>@content.title</h4>
-//-                     <p>@StringTools.Concat("" + content.description, 100)...</p>
-//-                     <p>@StringTools.GetDomainName("" + content.provider_url)</p>
-//-                 </div>
-//-             </paper-card>
-//-         </a>
-//-         i++;
-//-     }
+span.articles.
+    @{
+        int i = 0;
+    }
+    @foreach(dynamic article in ViewBag.Articles){
+        if(i >= 12){
+            return;
+        }
+        @try{
+            dynamic content  = JsonConvert.DeserializeObject((String) article.content);
+            <a href="~/Home/ViewArticle?url=@content.original_url&title=@content.title" class="article">
+                <div>
+                    <div class="card-image">
+                        @if(content.images.Count > 0){
+                            <img class="lazyload" src="~/images/news.png" data-src="@content.images[0].url" alt="Missing Article Image">
+                        }else{
+                            <img class="lazyload" src="~/images/news.png" alt="Missing Article Image">
+                        }
+                    </div>
+                    <div class="card-content">
+                        <h4>@content.title</h4>
+                        <p>@StringTools.Concat("" + content.description, 100)...</p>
+                        <p>@StringTools.GetDomainName("" + content.provider_url)</p>
+                    </div>
+                </div>
+            </a>
+        }catch(Exception e){
+            Console.WriteLine("Caught Exception: " + e + "\n");
+        }
+        
+        
+        i++;
+    }

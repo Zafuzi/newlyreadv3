@@ -1,7 +1,11 @@
 span.
     @using NewlyReadv3.Tools;
-div.reader.
-    <h4>@ViewBag.Article.title</h4>
-    <small>@StringTools.GetDomainName(@ViewBag.Original)</small>
-    <a href="@ViewBag.Original" target="_blank">Original Article</a>
-    @Html.Raw(ViewBag.Article.content)
+    @{
+        ViewBag.Title = ViewBag.Article.objects[0].title;
+    }
+div.reader
+    h2 @ViewBag.Article.objects[0].title
+    small @StringTools.GetDomainName(@ViewBag.Original)
+    a(href="@ViewBag.Original" target="_blank") Original Article
+    div.content @Html.Raw(ViewBag.Article.objects[0].html)
+        

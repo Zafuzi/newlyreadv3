@@ -10,65 +10,31 @@ html(lang="en")
         meta(name="description" content="NewlyRead is a simple news site that provides you with the news as quickly as possible.")
         link(rel="stylesheet" href="~/components/normalize-css/normalize.css")
         link(rel="stylesheet" href="~/css/styles.css")
-        link(rel="import" href="~/components/polymer/polymer.html")
+        //- link(rel="import" href="~/components/polymer/polymer.html")
         include _LayoutComponents.pug
 
     body
-        app-drawer-layout(width="256px" force-narrow)
-            app-drawer#drawer(swipe-open)
-                ul
-                    li 
-                         a(href="~/") Home
-                    li 
-                        a(href="~/About") About
-                    li
-                        a(href="~/Home/Category?category=business") Business
-                    li
-                        a(href="~/Home/Category?category=entertainment") Entertainment
-                    li
-                        a(href="~/Home/Category?category=gaming") Gaming
-                    li
-                        a(href="~/Home/Category?category=general") General
-                    li
-                        a(href="~/Home/Category?category=music") Music
-                    li
-                        a(href="~/Home/Category?category=science-and-nature") Science &amp; Nature
-                    li
-                        a(href="~/Home/Category?category=sport") Sports
-                    li
-                        a(href="~/Home/Category?category=technology") Technology
-
-            app-header(fixed shadow)#header
-                app-toolbar
-                    paper-icon-button(icon="menu" drawer-toggle)
-                    div(main-title)
-                        p NewlyRead
-            span#content @RenderBody()
+        header
+            a(href="~/") Home
+            a(href="~/About") About
+            div.dropdown
+                button.dropbtn Categories
+                div.dropdown-content
+                    a(href="~/Home/Category?category=business") Business
+                    a(href="~/Home/Category?category=entertainment") Entertainment
+                    a(href="~/Home/Category?category=gaming") Gaming
+                    a(href="~/Home/Category?category=general") General
+                    a(href="~/Home/Category?category=music") Music
+                    a(href="~/Home/Category?category=science-and-nature") Science &amp; Nature
+                    a(href="~/Home/Category?category=sport") Sports
+                    a(href="~/Home/Category?category=technology") Technology
+                    
+        main#content @RenderBody()
 
         script(type="text/javascript" src="~/components/jquery/dist/jquery.min.js")
-        script(type="text/javascript" async src="~/components/webcomponentsjs/webcomponents.min.js")
         script(type="text/javascript" async src="~/components/fetch/fetch.js")
         script(type="text/javascript" defer async src="~/components/lazysizes/lazysizes.min.js")
         script(type="text/javascript" src="~/scripts/sw.js")
+        script(type="text/javascript" defer src="~/scripts/jquery.sticky.js")
         script(type="text/javascript" defer src="~/scripts/seed.js")
-        script(src="//static.getclicky.com/js" type="text/javascript")
-        script(type="text/javascript").
-            try{ clicky.init(101028226); }catch(e){}
-        noscript
-            p
-                img(alt="Clicky" width="1" height="1" src="//in.getclicky.com/101028226ns.gif")
-        script(type="text/javascript" async defer).
-                var _paq = _paq || [];
-                _paq.push(['trackPageView']);
-                _paq.push(['enableLinkTracking']);
-                (function() {
-                var u="//zfoutz.piwikpro.com/";
-                _paq.push(['setTrackerUrl', u+'piwik.php']);
-                _paq.push(['setSiteId', 1]);
-                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-                })();
-        noscript
-            p
-                img(src="//zfoutz.piwikpro.com/piwik.php?idsite=1" style="border:0;" alt="")
         block scripts

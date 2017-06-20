@@ -1,4 +1,7 @@
-<span>@using NewlyReadv3.Tools;</span><h2>Featured Articles</h2><p>@ViewBag.Message</p><span class="articles">@foreach(var source in ViewBag.Articles){
+<span>@using NewlyReadv3.Tools;
+@{
+    ViewBag.Title = ViewBag.Category;
+}</span><h2>Featured Articles</h2><p>@ViewBag.Message</p><span class="articles">@foreach(var source in ViewBag.Articles){
     <a href="~/Home/ViewArticle?url=@source.url&title=@source.title" class="article">
         <paper-card>
             <div class="card-image">
