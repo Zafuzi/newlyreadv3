@@ -33,7 +33,7 @@ namespace NewlyReadv3
             }
             var sourcesTimer = new System.Threading.Timer((e) =>
             {
-                if (!db.KeyExists("sources"))
+                if (db.StringGet("sources").IsNullOrEmpty)
                 {
                     return;
                 }
