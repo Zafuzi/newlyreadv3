@@ -20,6 +20,8 @@ namespace NewlyReadv3
         private static IDatabase db = redis.GetDatabase();
         public static void Main(string[] args)
         {
+
+            redis.PreserveAsyncOrder = false;
             var rclient = new RestClient("http://newsapi.org/v1/");
             var request = new RestRequest();
             if (db.StringGet("sources").IsNullOrEmpty)
