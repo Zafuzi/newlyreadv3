@@ -125,63 +125,51 @@ namespace NewlyReadv3.Controllers
         [HttpGet("extract/{url}")]
         public static dynamic Extract(string url, string title)
         {
-            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("127.0.0.1");
-            IDatabase db = redis.GetDatabase();
-            IServer server = redis.GetServer("127.0.0.1:6379");
             DateTime now = DateTime.UtcNow;
             dynamic article = "";
-            string article_key = string.Format("html:{0}", title);
-            if (db.KeyExists(article_key))
-            {
-                article = JsonConvert.DeserializeObject(db.StringGet(article_key));
-                Console.WriteLine("\n\n FOUND IN DB \n\n");
-            }
-            else
-            {
-                Console.WriteLine("\n\n NOT IN DB \n\n");
-                // Contact
-                var TOKEN = "4305b7c99372aca246ab9a79fb8658fe";
-                var client = new RestClient("https://api.diffbot.com/v3/article");
-                var request = new RestRequest(Method.GET);
-                request.AddParameter("token", TOKEN);
-                request.AddParameter("url", url);
+            Console.WriteLine("\n\n NOT IN DB \n\n");
+            // Contact
+            var TOKEN = "4305b7c99372aca246ab9a79fb8658fe";
+            var client = new RestClient("https://api.diffbot.com/v3/article");
+            var request = new RestRequest(Method.GET);
+            request.AddParameter("token", TOKEN);
+            request.AddParameter("url", url);
 
-                EventWaitHandle Wait = new AutoResetEvent(false);
+            EventWaitHandle Wait = new AutoResetEvent(false);
 
-                var asyncHandle = client.ExecuteAsync(request, response =>
+            var asyncHandle = client.ExecuteAsync(request, response =>
+            {
+                string content = response.Content;
+                dynamic extract, objects;
+                try
                 {
-                    string content = response.Content;
-                    dynamic extract, objects;
-                    try
+                    extract = JsonConvert.DeserializeObject(content);
+                    objects = extract.objects;
+                    // Console.WriteLine(objects[0]);
+
+                    title = title.Replace(":", "");
+
+                    var site_name = objects[0].siteName;
+                    if (site_name == null) site_name = "GENERAL";
+                    var sourceKey = string.Format("html:{0}:{1}", site_name, title);
+                    var html = JsonConvert.SerializeObject(objects[0]);
+                    var obj = new ExtractedArticle
                     {
-                        extract = JsonConvert.DeserializeObject(content);
-                        objects = extract.objects;
-                        // Console.WriteLine(objects[0]);
+                        date = now.ToString("u"),
+                        content = html
+                    };
 
-                        title = title.Replace(":", "");
-
-                        var site_name = objects[0].siteName;
-                        if (site_name == null) site_name = "GENERAL";
-                        var sourceKey = string.Format("html:{0}:{1}", site_name, title);
-                        var html = JsonConvert.SerializeObject(objects[0]);
-                        var obj = new ExtractedArticle
-                        {
-                            date = now.ToString("u"),
-                            content = html
-                        };
-
-                        string s = JsonConvert.SerializeObject(obj);
-                        db.StringSet(sourceKey, s);
-                        article = extract;
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("General Exception caught: " + e);
-                    }
-                    Wait.Set();
-                });
-                Wait.WaitOne();
-            }
+                    string s = JsonConvert.SerializeObject(obj);
+                    db.StringSet(sourceKey, s);
+                    article = extract;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("General Exception caught: " + e);
+                }
+                Wait.Set();
+            });
+            Wait.WaitOne();
             return article;
         }
 
