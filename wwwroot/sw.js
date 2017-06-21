@@ -4,18 +4,17 @@ var urlsToCache = [
     '/css/styles.css',
     '/scripts/seed.js',
     '/components/jquery/dist/jquery.min.js',
-    '/components/polymer/polymer.html',
-    '/components/webcomponentsjs/webcomponents.min.js',
-    '/components/app-layout/app-layout.html',
-    '/components/app-layout/app-drawer-layout/app-drawer-layout.html',
-    '/components/app-layout/app-drawer/app-drawer.html',
-    '/components/app-layout/app-header/app-header.html',
-    '/components/app-layout/app-scroll-effects/app-scroll-effects.html',
-    '/components/app-layout/app-scroll-effects/effects/waterfall.html',
-    '/components/paper-icon-button/paper-icon-button.html',
-    '/components/paper-card/paper-card.html',
-    '/components/iron-icons/iron-icons.html',
-    '/Home'
+    '/Home/Category?category=business',
+    '/Home/Category?category=entertainment',
+    '/Home/Category?category=gaming',
+    '/Home/Category?category=general',
+    '/Home/Category?category=music',
+    '/Home/Category?category=science-and-nature',
+    '/Home/Category?category=sports',
+    '/Home/Category?category=technology',
+    '/Home',
+    '/images/news.png',
+    '/images/dmitry-ratushny-banner.jpg'
 ];
 
 self.addEventListener('install', function(event) {
