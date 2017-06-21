@@ -15,9 +15,9 @@
             <div>
                 <div class="card-image">
                     @if(content.images.Count > 0){
-                        <img class="lazyload" src="~/images/news.png" data-src="@content.images[0].url" alt="Missing Article Image">
+                        <img class="lazyload" onerror="imgError(this);" src="~/images/news.png" data-src="@content.images[0].url" alt="Missing Article Image">
                     }else{
-                        <img class="lazyload" src="~/images/news.png" alt="Missing Article Image">
+                        <img class="lazyload" onerror="imgError(this);" src="~/images/news.png" alt="Missing Article Image">
                     }
                 </div>
                 <div class="card-content">

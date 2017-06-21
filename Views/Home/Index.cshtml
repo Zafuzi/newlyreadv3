@@ -1,6 +1,6 @@
 <span>@{
     ViewBag.Title = "Home";
-}</span><div id="banner"><div id="banner_msg"><img class="lazyload" src="" data-src="images/dmitry-ratushny-banner.jpg" alt="Looking through a pair of glasses towards a book: By Dmitry Ratushny"/><h1>NewlyRead</h1><p>Read the News</p></div></div><span>@using NewlyReadv3.Tools;
+}</span><div id="banner"><div id="banner_msg"><img class="lazyload" src="" onerror="imgError(this);" data-src="images/dmitry-ratushny-banner.jpg" alt="Looking through a pair of glasses towards a book: By Dmitry Ratushny"/><h1>NewlyRead</h1><p>Read the News</p></div></div><span>@using NewlyReadv3.Tools;
 @using Newtonsoft.Json;
 @{
     ViewBag.Title = "Home";
@@ -17,9 +17,9 @@
             <div>
                 <div class="card-image">
                     @if(content.images.Count > 0){
-                        <img class="lazyload" src="~/images/news.png" data-src="@content.images[0].url" alt="Missing Article Image">
+                        <img class="lazyload" onerror="imgError(this);" src="~/images/news.png" data-src="@content.images[0].url" alt="Missing Article Image">
                     }else{
-                        <img class="lazyload" src="~/images/news.png" alt="Missing Article Image">
+                        <img class="lazyload" onerror="imgError(this);" src="~/images/news.png" alt="Missing Article Image">
                     }
                 </div>
                 <div class="card-content">

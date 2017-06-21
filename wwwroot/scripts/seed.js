@@ -30,4 +30,14 @@ $(function() {
 
 
     $("header").stick_in_parent();
+
+    $("img").on("error", function() {
+        imgError(this);
+    })
 });
+
+function imgError(image) {
+    image.onerror = "";
+    image.src = "../images/news.png";
+    return true;
+}

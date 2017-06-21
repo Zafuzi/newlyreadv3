@@ -5,7 +5,7 @@
     <a href="~/Home/ViewArticle?url=@source.url&title=@source.title" class="article">
         <paper-card>
             <div class="card-image">
-                <img class="lazyload" src="~/images/news.png" data-src="@source.urlToImage" alt="Missing Article Image">
+                <img class="lazyload" onerror="imgError(this);" src="~/images/news.png" data-src="@source.urlToImage" alt="Missing Article Image">
             </div>
             <div class="card-content">
                 <div class="foot">
