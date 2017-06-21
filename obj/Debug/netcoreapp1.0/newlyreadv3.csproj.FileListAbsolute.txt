@@ -7,3 +7,12 @@
 /Users/zacharyfoutz/git/newlyreadv3/obj/Debug/netcoreapp1.0/newlyreadv3.AssemblyInfo.cs
 /Users/zacharyfoutz/git/newlyreadv3/obj/Debug/netcoreapp1.0/newlyreadv3.dll
 /Users/zacharyfoutz/git/newlyreadv3/obj/Debug/netcoreapp1.0/newlyreadv3.pdb
+/home/zach/git/newlyreadv3/bin/Debug/netcoreapp1.0/newlyreadv3.deps.json
+/home/zach/git/newlyreadv3/bin/Debug/netcoreapp1.0/newlyreadv3.runtimeconfig.json
+/home/zach/git/newlyreadv3/bin/Debug/netcoreapp1.0/newlyreadv3.runtimeconfig.dev.json
+/home/zach/git/newlyreadv3/bin/Debug/netcoreapp1.0/newlyreadv3.dll
+/home/zach/git/newlyreadv3/bin/Debug/netcoreapp1.0/newlyreadv3.pdb
+/home/zach/git/newlyreadv3/obj/Debug/netcoreapp1.0/UserSecretsAssemblyInfo.cs
+/home/zach/git/newlyreadv3/obj/Debug/netcoreapp1.0/newlyreadv3.AssemblyInfo.cs
+/home/zach/git/newlyreadv3/obj/Debug/netcoreapp1.0/newlyreadv3.dll
+/home/zach/git/newlyreadv3/obj/Debug/netcoreapp1.0/newlyreadv3.pdb
