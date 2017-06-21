@@ -15,6 +15,7 @@ namespace NewlyReadv3.Controllers
     public class v1 : Controller
     {
         private static ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("127.0.0.1");
+        connection.PreserveAsyncOrder = false;
         private static IDatabase db = redis.GetDatabase();
         private static IServer server = redis.GetServer("127.0.0.1:6379");
         [HttpGet]
