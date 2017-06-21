@@ -1,6 +1,9 @@
 span.
     @using NewlyReadv3.Tools;
     @using Newtonsoft.Json;
+    @{
+        ViewBag.Title = "Home";
+    }
 h2 Recent Articles
 
 span.articles.
@@ -13,7 +16,7 @@ span.articles.
         }
         @try{
             dynamic content  = JsonConvert.DeserializeObject((String) article.content);
-            <a href="~/Home/ViewArticle?url=@content.original_url&title=@content.title" class="article">
+            <a href="~/Home/ViewArticle?url=@content.pageUrl&title=@content.title" class="article">
                 <div>
                     <div class="card-image">
                         @if(content.images.Count > 0){

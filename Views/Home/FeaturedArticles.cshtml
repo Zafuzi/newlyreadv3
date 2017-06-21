@@ -1,5 +1,8 @@
 <span>@using NewlyReadv3.Tools;
-@using Newtonsoft.Json;</span><h2>Recent Articles</h2><span class="articles">@{
+@using Newtonsoft.Json;
+@{
+    ViewBag.Title = "Home";
+}</span><h2>Recent Articles</h2><span class="articles">@{
     int i = 0;
 }
 @foreach(dynamic article in ViewBag.Articles){
@@ -8,7 +11,7 @@
     }
     @try{
         dynamic content  = JsonConvert.DeserializeObject((String) article.content);
-        <a href="~/Home/ViewArticle?url=@content.original_url&title=@content.title" class="article">
+        <a href="~/Home/ViewArticle?url=@content.pageUrl&title=@content.title" class="article">
             <div>
                 <div class="card-image">
                     @if(content.images.Count > 0){
