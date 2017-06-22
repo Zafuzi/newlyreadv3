@@ -18,42 +18,53 @@ namespace NewlyReadv3.Controllers
         private static IDatabase db = redis.GetDatabase();
         private static IServer server = redis.GetServer("127.0.0.1:6379");
         [HttpGet]
-        public dynamic Get()
-        {
+        public dynamic Get(){
             return new string[] {
-             "Please specify and endpoint."
-         };
+                "Please specify an endpoint."
+            };
         }
 
-        [HttpGet("{endpoint}/{category?}")]
-        public dynamic Get(string endpoint, string category)
-        {
-            dynamic data = "";
-            switch (endpoint)
-            {
-                case "sources":
-                    return getSources();
-                case "articles":
-                    return getArticles(category);
-                case "extracted":
-                    return getExtracted();
-                default:
-                    return "Invalid Request.";
+        [HttpGet("views/{view}/{data?}")]
+        public IActionResult GetView(String view, String data){
+            switch(view){
+                case "Category":
+                    ViewBag.Articles = GetArticles(data);
+                    break;
+                case "ViewArticle":
+                    String keys = "";
+                    var keysToScan = string.Format("html:*:" + data);
+                    foreach (var key in server.Keys(pattern: keysToScan))
+                    {
+                        keys = key;
+                    }
+                    dynamic article = db.StringGet(keys);
+                    Console.WriteLine("ARTICLE: " + article);
+
+                    try{
+                        ViewBag.Article = article;
+                        Console.WriteLine("\n\n Article Content: {0} \n\n", ViewBag.Article.content);
+                    } catch(Exception e){
+                        Console.WriteLine("Exception caught while trying to deserialize article: " + e);
+                    }
+                    ViewBag.Article = JsonConvert.DeserializeObject(article);
+                    break;
             }
+            return View("~/Views/Home/" + view + ".cshtml");
         }
 
-        public static dynamic getSources()
+        [HttpGet("sources")]
+        public IActionResult GetSources()
         {
             dynamic data = "";
             if (db.StringGet("sources").IsNullOrEmpty)
             {
-                return "Error: Database returned nothing.";
+                return new ObjectResult("Error: Database returned nothing.");
             }
             data = JsonConvert.DeserializeObject(db.StringGet("sources"));
-            return data;
+            return new ObjectResult(data);
         }
 
-        public static dynamic getArticles(string category)
+        public dynamic GetArticles(string category)
         {
             List<String> articlesFromSources = new List<String>();
             var keysToScan = string.Format("articles:{0}:*", category);
@@ -90,8 +101,8 @@ namespace NewlyReadv3.Controllers
             data = articles.OrderByDescending(item => item.publishedAt).ToList();
             return data;
         }
-
-        public static dynamic getExtracted()
+        [HttpGet("extracted")]
+        public IActionResult GetExtracted()
         {
             dynamic data = "";
             List<dynamic> articles = new List<dynamic>();
@@ -120,20 +131,21 @@ namespace NewlyReadv3.Controllers
             }
             data = articles.OrderByDescending(item => item.date);
 
-            return data;
+            return new ObjectResult(data);
         }
-        [HttpGet("extract/{url}")]
-        public static dynamic Extract(string url, string title)
+        [HttpGet("extract/{url}/{title}")]
+        public IActionResult Extract(string url, string title)
         {
+            Console.WriteLine("\n\nURL: {0},  \nTITLE: {1} \n\n", url, title);
+
             DateTime now = DateTime.UtcNow;
             dynamic article = "";
-            Console.WriteLine("\n\n NOT IN DB \n\n");
-            // Contact
+
             var TOKEN = "4305b7c99372aca246ab9a79fb8658fe";
             var client = new RestClient("https://api.diffbot.com/v3/article");
             var request = new RestRequest(Method.GET);
             request.AddParameter("token", TOKEN);
-            request.AddParameter("url", url);
+            request.AddParameter("url", Uri.UnescapeDataString(url));
 
             EventWaitHandle Wait = new AutoResetEvent(false);
 
@@ -170,7 +182,8 @@ namespace NewlyReadv3.Controllers
                 Wait.Set();
             });
             Wait.WaitOne();
-            return article;
+            ViewBag.Article = article;
+            return View("~/Views/Home/ViewArticle.cshtml");
         }
 
         class ExtractedArticle

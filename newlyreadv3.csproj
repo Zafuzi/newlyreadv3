@@ -46,5 +46,6 @@
     <PackageReference Include="RestSharp.NetCore" Version="105.2.3" />
     <PackageReference Include="StackExchange.Redis" Version="1.2.0" />
     <PackageReference Include="HtmlAgilityPack.NetCore" Version="1.5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="1.1.2"/>
   </ItemGroup>
 </Project>

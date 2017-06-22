@@ -11,10 +11,14 @@ namespace NewlyReadv3.Controllers
 
         [Route("")]
         [Route("Home")]
-        [Route("Home/Index")]
-        public IActionResult Index()
+        
+        public IActionResult Home()
         {
-            ViewBag.Articles = NewlyReadv3.Controllers.v1.getExtracted();
+            return View("~/Views/Home/Layout.cshtml");
+        }
+        [Route("Index")]
+        [Route("Home/Index")]
+        public IActionResult Index(){  
             return View();
         }
 
@@ -26,20 +30,10 @@ namespace NewlyReadv3.Controllers
 
         public IActionResult Category(string category)
         {
-            ViewBag.Articles = NewlyReadv3.Controllers.v1.getArticles(category);
-            ViewBag.Category = category.ToUpperInvariant();
             return View();
         }
 
         public IActionResult ViewArticle(string url, string title){
-            dynamic article = NewlyReadv3.Controllers.v1.Extract(url, title);
-            try{
-                ViewBag.Article = article;
-                Console.WriteLine("\n\n Article Content: {0} \n\n", ViewBag.Article.content);
-            } catch(Exception e){
-                Console.WriteLine("Exception caught while trying to deserialize article: " + e);
-            }
-            ViewBag.Original = url;
             return View();
         }
     }

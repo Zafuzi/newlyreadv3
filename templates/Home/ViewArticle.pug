@@ -8,4 +8,3 @@ div.reader
     small @StringTools.GetDomainName(@ViewBag.Original)
     a(href="@ViewBag.Original" target="_blank") Original Article
     div.content @Html.Raw(ViewBag.Article.objects[0].html)
-        

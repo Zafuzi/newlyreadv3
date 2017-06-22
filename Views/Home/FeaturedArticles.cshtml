@@ -1,36 +1,11 @@
-<span>@using NewlyReadv3.Tools;
-@using Newtonsoft.Json;
-@{
-    ViewBag.Title = "Home";
-}</span><h2>Recent Articles</h2><span class="articles">@{
-    int i = 0;
-}
-@foreach(dynamic article in ViewBag.Articles){
-    if(i >= 24){
-        return;
-    }
-    @try{
-        dynamic content  = JsonConvert.DeserializeObject((String) article.content);
-        <a href="~/Home/ViewArticle?url=@content.pageUrl&title=@content.title" class="article">
-            <div>
-                <div class="card-image">
-                    @if(content.images.Count > 0){
-                        <img class="lazyload" onerror="imgError(this);" src="~/images/news.png" data-src="@content.images[0].url" alt="Missing Article Image">
-                    }else{
-                        <img class="lazyload" onerror="imgError(this);" src="~/images/news.png" alt="Missing Article Image">
-                    }
-                </div>
-                <div class="card-content">
-                    <h4>@content.title</h4>
-                    <p>@StringTools.Concat("" + content.description, 100)...</p>
-                    <p>@StringTools.GetDomainName("" + content.provider_url)</p>
-                </div>
-            </div>
-        </a>
-    }catch(Exception e){
-        Console.WriteLine("Caught Exception: " + e + "\n");
-    }
-    
-    
-    i++;
-}</span>
+<h2>Recent Articles</h2><div class="articles"></div><script>$(function(){
+    callAPI("extracted").then(json => {
+        json.map(obj => {
+            let content = JSON.parse(obj.content);
+            let featuredArticle = new FeaturedArticle(encodeURIComponent(content.pageUrl), content.title, content);
+            featuredArticle.add(".articles");
+            FeaturedArticles.push(featuredArticle);
+        });
+        setRules();
+    });
+});</script>

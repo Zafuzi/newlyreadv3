@@ -1,8 +1,7 @@
-<span>@using NewlyReadv3.Tools;
-@{
-    ViewBag.Title = ViewBag.Category;
-}</span><h2>Featured Articles</h2><p>@ViewBag.Message</p><span class="articles">@foreach(var source in ViewBag.Articles){
-    <a href="~/Home/ViewArticle?url=@source.url&title=@source.title" class="article">
+<h2>Featured Articles</h2><span>@using NewlyReadv3.Tools;</span><span class="articles">@foreach(var source in ViewBag.Articles){
+    String url = source.url;
+    url = url.Replace("/", "%2F");
+    <a href="#" data-url="@source.url" data-title="/@source.title" class="article article_loader">
         <paper-card>
             <div class="card-image">
                 <img class="lazyload" onerror="imgError(this);" src="~/images/news.png" data-src="@source.urlToImage" alt="Missing Article Image">

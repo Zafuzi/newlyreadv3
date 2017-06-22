@@ -10,26 +10,24 @@ html(lang="en")
         meta(name="description" content="NewlyRead is a simple news site that provides you with the news as quickly as possible.")
         link(rel="stylesheet" href="~/components/normalize-css/normalize.css")
         link(rel="stylesheet" href="~/css/styles.css")
-        //- link(rel="import" href="~/components/polymer/polymer.html")
-        include _LayoutComponents.pug
 
     body
         header
-            a(href="~/") Home
-            a(href="~/About") About
+            a(href="/") Home
+            a(href="#About" class="nav_loader") About
             div.dropdown
                 button.dropbtn Categories
                 div.dropdown-content
-                    a(href="~/Home/Category?category=business") Business
-                    a(href="~/Home/Category?category=entertainment") Entertainment
-                    a(href="~/Home/Category?category=gaming") Gaming
-                    a(href="~/Home/Category?category=general") General
-                    a(href="~/Home/Category?category=music") Music
-                    a(href="~/Home/Category?category=science-and-nature") Science &amp; Nature
-                    a(href="~/Home/Category?category=sport") Sports
-                    a(href="/api/v1/ajax/Category?category=technology" class="page_loader") Technology
+                    a(href="#business" class="page_loader") Business
+                    a(href="#entertainment" class="page_loader") Entertainment
+                    a(href="#gaming" class="page_loader") Gaming
+                    a(href="#general" class="page_loader") General
+                    a(href="#music" class="page_loader") Music
+                    a(href="#science-and-nature" class="page_loader") Science &amp; Nature
+                    a(href="#sport" class="page_loader") Sports
+                    a(href="#technology" class="page_loader") Technology
                     
-        main#content @RenderBody()
+        main#content
         div#ajax
 
         script(type="text/javascript" src="~/components/jquery/dist/jquery.min.js")
